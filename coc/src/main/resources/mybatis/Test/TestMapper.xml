@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.coc.mapper.TestMapper">
+
+    <!-- test 리스트 조회 -->
+    <select id="selectTestList"
+            parameterType="com.project.coc.model.TestRequest"
+            resultType="com.project.coc.model.Test"
+    >
+    SELECT
+        t.seq,
+        t.title,
+        t.cont,
+        t.userName,
+        t.createdAt,
+        t.updatedAt
+    FROM COC.TEST t
+    WHERE 1=1
+        AND delYn = 'N'
+    <if test="title != null and title != ''">
+        AND title = #{title}
+    </if>
+    <if test="cont != null and cont != ''">
+        AND cont = #{cont}
+    </if>
+    <if test="userName != null and userName != ''">
+        AND userName = #{userName}
+    </if>
+    </select>
+
+    <!-- test 단건 조회-->
+    <select id="selectTest" resultType="com.project.coc.model.Test">
+    SELECT
+        t.seq,
+        t.title,
+        t.cont,
+        t.userName,
+        t.createdAt,
+        t.updatedAt
+    FROM COC.TEST t
+    WHERE 1=1
+        AND delYn = 'N'
+        AND seq = #{seq}
+    </select>
+
+
+    <!-- test 등록 -->
+    <insert id="regiTest" parameterType="com.project.coc.model.TestRequest">
+        INSERT INTO COC.TEST
+        (
+            title               /* 테스트제목 */
+        ,   cont                /* 테스트내용 */
+        ,   userName            /* 유저이름 */
+        ,   createdAt           /* 생성일시 */
+        ,   updatedAt           /* 수정일시 */
+        ,   delYn               /* 삭제여부 */
+        )VALUES (
+            #{title}            /* 테스트제목 */
+        ,   #{cont}             /* 테스트내용 */
+        ,   #{userName}         /* 유저이름 */
+        ,   SYSDATE()           /* 생성일시 */
+        ,   SYSDATE()           /* 수정일시 */
+        ,   'N'                 /* 삭제여부 */
+        )
+    </insert>
+
+</mapper>
