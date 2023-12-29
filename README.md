@@ -1,5 +1,8 @@
 # Challenge-of-Champion
 
+#swagger
+http://localhost:8080/swagger-ui/index.html#
+
 #db (local) 테이블 생성 쿼리
 
 CREATE TABLE coc.TEST (
