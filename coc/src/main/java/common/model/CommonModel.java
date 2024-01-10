@@ -12,7 +12,7 @@ public class CommonModel {
     /**
      * key 번호
      */
-    private Integer seq;
+    private int seq;
 
     /**
      * 생성일시 (timestamp)

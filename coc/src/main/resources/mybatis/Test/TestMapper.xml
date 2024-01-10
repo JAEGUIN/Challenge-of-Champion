@@ -39,8 +39,8 @@
         t.updatedAt
     FROM COC.TEST t
     WHERE 1=1
-        AND delYn = 'N'
-        AND seq = #{seq}
+        AND t.delYn = 'N'
+        AND t.seq = #{seq}::Integer
     </select>
 
 

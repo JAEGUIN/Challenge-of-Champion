@@ -27,10 +27,4 @@ public class Test extends CommonModel {
      */
     @Schema(defaultValue = "사용자이름")
     private String userName;
-
-    /**
-     * 삭제 여부
-     */
-    @Schema(defaultValue = "삭제여부")
-    private String delYn;
 }
