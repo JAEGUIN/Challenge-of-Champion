@@ -14,7 +14,7 @@
         t.userName,
         t.createdAt,
         t.updatedAt
-    FROM COC.TEST t
+    FROM coc.test t
     WHERE 1=1
         AND delYn = 'N'
     <if test="title != null and title != ''">
@@ -37,7 +37,7 @@
         t.userName,
         t.createdAt,
         t.updatedAt
-    FROM COC.TEST t
+    FROM coc.test t
     WHERE 1=1
         AND delYn = 'N'
         AND seq = #{seq}
@@ -46,7 +46,7 @@
 
     <!-- test 등록 -->
     <insert id="regiTest" parameterType="com.project.coc.model.TestRequest">
-        INSERT INTO COC.TEST
+        INSERT INTO coc.test
         (
             title               /* 테스트제목 */
         ,   cont                /* 테스트내용 */
