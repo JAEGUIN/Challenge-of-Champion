@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.coc.mapper.UserMapper">
+
+    <select id="getAllUsers" resultType="com.project.coc.entity.user.User">
+        SELECT * FROM USER;
+    </select>
+
+    <select id="getUserById" parameterType="long" resultType="com.project.coc.entity.user.User">
+        SELECT * FROM USER WHERE seq = #{seq};
+    </select>
+
+    <select id="getUserByEmail" parameterType="string" resultType="com.project.coc.entity.user.User">
+        SELECT * FROM USER WHERE email = #{email};
+    </select>
+
+    <insert id="createUser" parameterType="com.project.coc.entity.user.User">
+        INSERT INTO USER (created_by, updated_by, create_at, update_at, email, password, nickname, delYN, profile_cont)
+        VALUES (#{createdBy}, #{updatedBy}, #{createdAt}, #{updatedAt}, #{email}, #{password}, #{nickname}, #{delYN}, #{profileCont});
+    </insert>
+
+    <update id="updateUser" parameterType="com.project.coc.entity.user.User">
+        UPDATE USER
+        SET created_by = #{createdBy},
+            updated_by = #{updatedBy},
+            create_at = #{createdAt},
+            update_at = #{updatedAt},
+            email = #{email},
+            password = #{password},
+            nickname = #{nickname},
+            delYN = #{delYN},
+            profile_cont = #{profileCont}
+        WHERE seq = #{seq};
+    </update>
+
+    <delete id="deleteUser" parameterType="long">
+        DELETE FROM USER WHERE seq = #{seq};
+    </delete>
+
+</mapper>
