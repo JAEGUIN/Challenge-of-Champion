@@ -1,7 +1,7 @@
-package com.project.coc.service;
+package com.project.coc.test.service;
 
-import com.project.coc.model.Test;
-import com.project.coc.model.TestRequest;
+import com.project.coc.test.model.Test;
+import com.project.coc.test.model.TestRequest;
 
 import java.util.List;
 

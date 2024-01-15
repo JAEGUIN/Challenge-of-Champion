@@ -1,8 +1,8 @@
-package com.project.coc.controller;
+package com.project.coc.test.controller;
 
-import com.project.coc.model.Test;
-import com.project.coc.model.TestRequest;
-import com.project.coc.service.TestService;
+import com.project.coc.test.model.Test;
+import com.project.coc.test.model.TestRequest;
+import com.project.coc.test.service.TestService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

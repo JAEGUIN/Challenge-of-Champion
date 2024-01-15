@@ -1,7 +1,7 @@
-package com.project.coc.mapper;
+package com.project.coc.test.mapper;
 
-import com.project.coc.model.Test;
-import com.project.coc.model.TestRequest;
+import com.project.coc.test.model.Test;
+import com.project.coc.test.model.TestRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package com.project.coc.model;
+package com.project.coc.test.model;
 
-import common.model.CommonModel;
+import com.project.coc.common.model.CommonModel;
 import lombok.Getter;
 import lombok.Setter;
 

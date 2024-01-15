@@ -1,9 +1,9 @@
-package com.project.coc.service.Impl;
+package com.project.coc.test.service.Impl;
 
-import com.project.coc.mapper.TestMapper;
-import com.project.coc.model.Test;
-import com.project.coc.model.TestRequest;
-import com.project.coc.service.TestService;
+import com.project.coc.test.mapper.TestMapper;
+import com.project.coc.test.model.Test;
+import com.project.coc.test.model.TestRequest;
+import com.project.coc.test.service.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
