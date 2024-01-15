@@ -1,0 +1,12 @@
+CREATE TABLE coc.board (
+    seq INT AUTO_INCREMENT PRIMARY KEY,
+    userSeq VARCHAR(20),
+    createdBy VARCHAR(20),
+    updatedBy VARCHAR(20),
+    createdAt CHARACTER(19),
+    updatedAt CHARACTER(19),
+    content VARCHAR(100),
+    category VARCHAR(20),
+    count INTEGER,
+    delYn CHARACTER(1)
+);
