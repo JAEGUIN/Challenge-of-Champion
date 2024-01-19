@@ -31,7 +31,7 @@ public class BoardController {
 
     @Operation(summary = "게시판 등록", description = "추가로 넣을 것!*")
     @PostMapping("/regi")
-    public void regiBoard(@RequestBody BoardRequest request){
+    public void postBoard(@RequestBody BoardRequest request){
         service.regiBoard(request);
     }
 
