@@ -56,6 +56,7 @@ public class BoardServiceImpl implements BoardService {
         }
     }
 
+    @Transactional
     @Override
     public void updateBoard(String seq, UpdateBoardRequest request) {
         try {
@@ -69,6 +70,7 @@ public class BoardServiceImpl implements BoardService {
         }
     }
 
+    @Transactional
     @Override
     public void deleteBoard(String seq) {
         try{
