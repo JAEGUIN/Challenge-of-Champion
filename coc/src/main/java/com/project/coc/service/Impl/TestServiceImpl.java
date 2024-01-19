@@ -35,6 +35,7 @@ public class TestServiceImpl implements TestService {
         try{
             List<Test> result = new ArrayList<>();
             result = mapper.selectTestList(request);
+            System.out.println("run testList");
             return result;
         }catch (Exception e){
             e.printStackTrace();
