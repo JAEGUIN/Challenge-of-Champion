@@ -24,9 +24,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<Board> selectBoardList(BoardRequest request) {
         try {
-            List<Board> result = new ArrayList<>();
-            result = mapper.selectBoardList(request);
-            return result;
+            return mapper.selectBoardList(request);
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -37,9 +35,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Board selectBoard(String seq) {
         try {
-            Board detail = new Board();
-            detail = mapper.selectBoard(seq);
-            return detail;
+            return mapper.selectBoard(seq);
         }catch (Exception e){
             e.printStackTrace();
             return null;
