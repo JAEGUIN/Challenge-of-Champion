@@ -1,37 +1,19 @@
-
-import {useEffect, useState} from "react";
+import React, { useState } from 'react';
+import { useRoutes } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import React from "react";
-import axios from 'axios';
-
-function App() {
-/*
-  const [data, setData] = useState('');
-
-  useEffect(() => {
-    axios.get("/test/hi")
-    .then(response=> setData(response.data)
-    )
-
-
-  },[]);
-*/
+import "./scss/style.scss";
+import Main from './component/Main';
+const App = () => {
 
   return (
-  /*
-  <>
-             백엔드에서 가져온 데이터입니다 : {data}
-              </>*/
-
-      <div>
-        <Router>
-          <Routes>
-            <Route path="/about" />
-            <Route path="/" />
-          </Routes>
-        </Router>
-      </div>
+    <div>
+      <Router>
+        <Routes>
+          <Route path="" element={<Main/>}></Route>
+        </Routes>
+      </Router>
+    </div>
   );
-}
+};
 
 export default App;
