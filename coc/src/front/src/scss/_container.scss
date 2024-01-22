@@ -36,3 +36,35 @@
 .table-borderless>:not(:first-child) {
   border-top-width: 0;
 }
+
+.popualrArena {
+  margin-top: 10px;
+  font-size: 30px;
+  text-align: center; /* 수평 중앙 정렬을 위한 설정 */
+  height: 500px;
+}
+
+.titlePopularArena {
+  margin: 20px;
+  font-size: 30px;
+}
+
+.popualrArena img{
+  width: 80%; /* 이미지의 너비를 부모 컨테이너에 맞게 설정 */
+  margin-top: 10px;
+  height: 100%; /* 높이를 100%로 설정하여 잘림 방지 */
+  object-fit: contain; /* contain은 이미지가 부모 요소에 잘리지 않고 맞춰지도록 설정 */
+  object-position: center center; /* 이미지를 정중앙에 위치시킴 */
+}
+
+.popluarArenaBtn {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 20px;
+}
+
+.div-horizon-center {
+  justify-content: center;
+  align-items: center;
+}

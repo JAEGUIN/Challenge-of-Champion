@@ -1,30 +1,68 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "reactstrap";
 
+{/* 사이드바 */}
 const SideBar = () => {
 
     const showMobilemenu = () => {
         document.getElementById("sidebarArea").classList.toggle("showSidebar");
     };
+
+     {/* 현재 페이지 정보 */}
     let location = useLocation();
 
     return (
-        <div className="p-3">
-            <div className="d-flex align-items-center">
-            <Button
-                close
-                size="sm"
-                className="ms-auto d-lg-none"
-                onClick={() => showMobilemenu()}
-            ></Button>
-            <br></br>
-            <h1> 아잉 부잉~</h1>
-            <h2>Side Menu</h2>
-            <p>Sliding from the left!</p>
-            {/* 여기에 사이드 메뉴 아이템을 추가하세요 */}
-            {/* 여러분의 앱에 맞게 수정하세요 */}
+        <div className="p-3 sidebar-container">
+            {/* 닫기 버튼*/}
+            <div className="closeBtn">
+                <Button
+                    close
+                    size="sm"
+                    onClick={() => showMobilemenu()}
+                ></Button>
             </div>
+
+            {/* 프로필 부분 */}
+            <div className="d-flex align-items-center">
+                <img src="/img/sample.jpg" className="profileImg"/>
+                <div className="profileDesc">
+                    <div className="profileName">스켬만세</div>
+                    <div className="d-flex">
+                        <div className="followCount">팔로워 <br/> 5000</div>
+                        <div className="followCount">팔로잉 <br/> 5000</div>
+                    </div>
+                </div>
+            </div>
+
+            {/* 링크 부분 */}
+            <div className="mt-2">
+                <Link
+                  className="sideLink text-secondary"
+                >게시판</Link>
+                <Link
+                  className="sideLink text-secondary"
+                >결투장</Link>
+                <Link
+                  className="sideLink text-secondary"
+                >랭크</Link>
+                <Link
+                  className="sideLink text-secondary"
+                >게임</Link>
+                <Link
+                  className="sideLink text-secondary"
+                >상점관리</Link>
+                <Link
+                  className="sideLink text-secondary"
+                >코인충전</Link>
+                <Link
+                  className="sideLink text-secondary"
+                >설정</Link>
+            </div>
+
+            <Link
+              className="bottom-button"
+            > 로그아웃</Link>
         </div>
     )
 }

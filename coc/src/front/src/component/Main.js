@@ -3,6 +3,7 @@ import SideBar from "./SideBar";
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import { Container } from "reactstrap";
+import PopularArena from './PopularArena';
 
 const Main = () => {
 
@@ -19,9 +20,9 @@ const Main = () => {
             {/********header**********/}
             <Header />
             {/********Middle Content**********/}
-            <Container className="p-4 wrapper" fluid>
-                <Outlet />
-            </Container>
+
+            <PopularArena/>
+
           </div>
         </div>
       </main>

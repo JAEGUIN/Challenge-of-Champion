@@ -21,4 +21,69 @@
       }
     }
   }
+
+.closeBtn {
+  /* 닫기 버튼 */
+  float: right;  /* 오른쪽 정렬 */
+}
+
+.profileImg {
+  /* 프로필 사진 */ 
+  width: 60px;
+  height: 60px;
+}
   
+.profileName {
+  /* 프로필 이름 */ 
+  font-weight: bold;
+  margin:5px;
+}
+
+.profileDesc {
+  /* 프로필 Description (팔로우,팔로워) */
+  margin:10px;
+}
+
+.followCount {
+  /* 팔로우 팔로워 수 */
+  margin-left: 5px;
+  width: 50%;
+  margin-right: 5px;
+}
+
+.sideLink {
+  /* 사이드 바에 있는 링크 */
+  display: block;
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  font-size: 25px;
+  font-weight: var(--bs-nav-link-font-weight);
+  color: var(--bs-nav-link-color);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.sidebar-container {
+  /* 기본적인 스타일 및 사이드바 스타일을 여기에 추가 */
+
+  position: relative; /* 부모 컨테이너에 대해 상대적인 위치 설정 */
+  height: 100%;
+}
+
+.bottom-button {
+  /* 로그아웃 버튼 */ 
+  position: absolute; /* 절대 위치 설정 */
+  bottom: 20px; /* 아래쪽에 배치 */
+  font-size: 30px;
+  left:50px;
+  color: var(--bs-nav-link-color);
+  float:right;
+  margin-bottom: 10px; /* 원하는 여백을 설정하세요 */
+  text-decoration: none;
+  font-weight: bold;
+
+}
