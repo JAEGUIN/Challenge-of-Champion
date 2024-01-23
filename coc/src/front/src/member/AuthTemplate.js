@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import palette from "../lib/styles/paletts";
-import { Link } from "react-router-dom";
 
 /** 페이지 레이아웃 */
 
