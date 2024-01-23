@@ -1,25 +1,16 @@
+import { Route, Routes } from 'react-router-dom';
+import MainPage from './main';
+import RegisterPage from './member/RegisterPage';
+import Login from './member/LoginPage';
 
-import {useEffect, useState} from "react";
-import React from "react";
-import axios from 'axios';
-
-function App() {
-
-  const [data, setData] = useState('');
-
-  useEffect(() => {
-    axios.get("/test/hi")
-    .then(response=> setData(response.data)
-    )
-
-
-  },[]);
-
-
-  return (<>
-             백엔드에서 가져온 데이터입니다 : {data}
-              </>
+const App = () => {
+  return (
+    <Routes>
+      <Route path='/' element={<MainPage/>}/>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<RegisterPage />} />
+    </Routes>
   );
-}
+};
 
 export default App;
