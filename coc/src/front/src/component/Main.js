@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import SideBar from "./SideBar";
-import { Outlet } from 'react-router-dom';
 import Header from './Header';
-import { Container } from "reactstrap";
+import { Button } from "reactstrap";
 import PopularArena from './PopularArena';
+import MainContents from './MainContents';
 
 const Main = () => {
 
@@ -22,11 +22,12 @@ const Main = () => {
             {/********Middle Content**********/}
 
             <PopularArena/>
-
+            <MainContents/>
+            <Button className="scrollUp">↑</Button>
           </div>
         </div>
       </main>
   );
-}
+};
 
 export default Main;

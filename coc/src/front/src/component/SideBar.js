@@ -27,7 +27,7 @@ const SideBar = () => {
             <div className="d-flex align-items-center">
                 <img src="/img/sample.jpg" className="profileImg"/>
                 <div className="profileDesc">
-                    <div className="profileName">스켬만세</div>
+                    <div className="profileName">대한민국</div>
                     <div className="d-flex">
                         <div className="followCount">팔로워 <br/> 5000</div>
                         <div className="followCount">팔로잉 <br/> 5000</div>
@@ -64,7 +64,7 @@ const SideBar = () => {
               className="bottom-button"
             > 로그아웃</Link>
         </div>
-    )
-}
+    );
+};
 
 export default SideBar;
