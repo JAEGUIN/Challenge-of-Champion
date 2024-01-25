@@ -2,39 +2,106 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.coc.mapper.UserMapper">
 
-    <select id="getAllUsers" resultType="com.project.coc.entity.user.User">
-        SELECT * FROM USER;
+    <!--모든 유저 조회-->
+    <select id="selectAllUsers"
+            resultType="com.project.coc.entity.user.User">
+        SELECT
+            u.seq,
+            u.created_by,
+            u.updated_by,
+            u.create_at,
+            u.update_at,
+            u.email,
+            u.password,
+            u.nickname,
+            u.delYN,
+            u.profile_cont,
+            u.role
+        FROM coc.USER u;
     </select>
 
-    <select id="getUserById" parameterType="long" resultType="com.project.coc.entity.user.User">
-        SELECT * FROM USER WHERE seq = #{seq};
+    <!--id로 유저 조회-->
+    <select id="selectUserById" parameterType="long" resultType="com.project.coc.entity.user.User">
+        SELECT
+            u.seq,
+            u.created_by,
+            u.updated_by,
+            u.create_at,
+            u.update_at,
+            u.email,
+            u.password,
+            u.nickname,
+            u.delYN,
+            u.profile_cont,
+            u.role
+        FROM coc.USER u
+        WHERE seq = #{seq};
     </select>
 
-    <select id="getUserByEmail" parameterType="string" resultType="com.project.coc.entity.user.User">
-        SELECT * FROM USER WHERE email = #{email};
+    <!--email로 유저 조회-->
+    <select id="selectUserByEmail" parameterType="string" resultType="com.project.coc.entity.user.User">
+        SELECT
+            u.seq,
+            u.created_by,
+            u.updated_by,
+            u.create_at,
+            u.update_at,
+            u.email,
+            u.password,
+            u.nickname,
+            u.delYN,
+            u.profile_cont,
+            u.role
+        FROM coc.USER u
+        WHERE email = #{email};
     </select>
 
-    <insert id="createUser" parameterType="com.project.coc.entity.user.User">
-        INSERT INTO USER (created_by, updated_by, create_at, update_at, email, password, nickname, delYN, profile_cont)
-        VALUES (#{createdBy}, #{updatedBy}, #{createdAt}, #{updatedAt}, #{email}, #{password}, #{nickname}, #{delYN}, #{profileCont});
+    <!--유저 등록-->
+    <insert id="regiUser"
+            parameterType="com.project.coc.entity.user.User">
+        INSERT INTO coc.USER
+            (
+            created_by,
+            create_at,
+            email,
+            password,
+            nickname,
+            delYN,
+            profile_cont,
+            role
+            )VALUES (
+                 #{createdBy},
+                 SYSDATE(),
+                 #{email},
+                 #{password},
+                 #{nickname},
+                 #{delYN},
+                 #{profileCont},
+                 #{role}
+            );
     </insert>
 
-    <update id="updateUser" parameterType="com.project.coc.entity.user.User">
-        UPDATE USER
-        SET created_by = #{createdBy},
+    <!--유저 수정-->
+    <update id="updateUser"
+            parameterType="com.project.coc.entity.user.User">
+        UPDATE coc.USER
+        SET
             updated_by = #{updatedBy},
-            create_at = #{createdAt},
-            update_at = #{updatedAt},
+            update_at = SYSDATE(),
             email = #{email},
             password = #{password},
             nickname = #{nickname},
-            delYN = #{delYN},
             profile_cont = #{profileCont}
         WHERE seq = #{seq};
     </update>
 
+    <!--유저 삭제-->
     <delete id="deleteUser" parameterType="long">
-        DELETE FROM USER WHERE seq = #{seq};
+        UPDATE coc.USER
+        SET
+            delYN ='y',
+            update_at=SYSDATE()
+
     </delete>
 
 </mapper>

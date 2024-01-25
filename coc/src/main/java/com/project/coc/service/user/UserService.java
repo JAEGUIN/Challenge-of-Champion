@@ -5,10 +5,10 @@ import com.project.coc.entity.user.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> getAllUsers();
-    User getUserById(Long seq);
-    User getUserByEmail(String email);
-    void createUser(User user);
-    void updateUser(User user);
+    List<User> selectAllUsers();
+    User selectUserById(Long seq);
+    User selectUserByEmail(String email);
+    void regiUser(User user);
+    void updateUser(Long seq,User user);
     void deleteUser(Long seq);
 }

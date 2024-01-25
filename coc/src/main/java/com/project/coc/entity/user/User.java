@@ -1,10 +1,10 @@
 package com.project.coc.entity.user;
 
-import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
 public class User {
 
     private Long seq;
