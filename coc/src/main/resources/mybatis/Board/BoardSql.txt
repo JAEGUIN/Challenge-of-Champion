@@ -1,5 +1,5 @@
 CREATE TABLE coc.board (
-    seq INT AUTO_INCREMENT PRIMARY KEY,
+    seq BIGINT AUTO_INCREMENT PRIMARY KEY,
     userSeq VARCHAR(20),
     createdBy VARCHAR(20),
     updatedBy VARCHAR(20),

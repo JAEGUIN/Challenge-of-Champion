@@ -38,4 +38,10 @@ public class Board extends CommonModel {
      */
     @Schema(defaultValue = "삭제여부")
     private String delYn;
+
+    /**
+     * 게시판 하트수
+     */
+    @Schema(defaultValue = "게시판 답글수")
+    private int replycount;
 }

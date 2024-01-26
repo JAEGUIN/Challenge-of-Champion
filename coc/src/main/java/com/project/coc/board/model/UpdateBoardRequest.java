@@ -11,14 +11,13 @@ import java.util.Date;
 public class UpdateBoardRequest {
 
     /**
+     * 게시판 번호
+     */
+    private Long seq;
+
+    /**
      * 게시판 글
      */
     @Schema(defaultValue = "안녕하세요 좋은 아침 입니다.")
     private String content;
-
-    /**
-     * 변경일시 (timestamp)
-     */
-    @Schema(defaultValue = "안녕하세요 좋은 아침 입니다.")
-    private Date updatedAt;
 }

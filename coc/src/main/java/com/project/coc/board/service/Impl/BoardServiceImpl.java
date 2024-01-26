@@ -2,7 +2,8 @@ package com.project.coc.board.service.Impl;
 
 import com.project.coc.board.mapper.BoardMapper;
 import com.project.coc.board.model.Board;
-import com.project.coc.board.model.BoardRequest;
+import com.project.coc.board.model.PostBoardRequest;
+import com.project.coc.board.model.SearchBoardRequest;
 import com.project.coc.board.model.UpdateBoardRequest;
 import com.project.coc.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Board> selectBoardList(BoardRequest request) {
+    public List<Board> selectBoardList(SearchBoardRequest request) {
         try {
             return mapper.selectBoardList(request);
         }catch (Exception e){
@@ -33,7 +33,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional(readOnly = true)
     @Override
-    public Board selectBoard(String seq) {
+    public Board selectBoard(Long seq) {
         try {
             return mapper.selectBoard(seq);
         }catch (Exception e){
@@ -44,7 +44,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional
     @Override
-    public void regiBoard(BoardRequest request) {
+    public void regiBoard(PostBoardRequest request) {
         try {
             mapper.regiBoard(request);
         }catch (Exception e){
@@ -54,13 +54,14 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional
     @Override
-    public void updateBoard(String seq, UpdateBoardRequest request) {
+    public void updateBoard(Long seq, UpdateBoardRequest request) {
         try {
             Board checkBoard = mapper.selectBoard(seq);
             if(checkBoard == null){
                 System.out.println("존재하지 않는 게시물 입니다.");
             }
-            mapper.updateBoard(seq);
+            request.setSeq(seq);
+            mapper.updateBoard(request);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -68,7 +69,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional
     @Override
-    public void deleteBoard(String seq) {
+    public void deleteBoard(Long seq) {
         try{
             mapper.deleteBoard(seq);
         }catch (Exception e){

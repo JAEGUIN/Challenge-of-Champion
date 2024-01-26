@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardRequest {
+public class PostBoardRequest {
 
     /**
      * 게시판 글
@@ -24,5 +24,5 @@ public class BoardRequest {
      * 게시판 작성자명
      */
     @Schema(defaultValue = "작성자명")
-    private String userSeq;
+    private Long userSeq;
 }
