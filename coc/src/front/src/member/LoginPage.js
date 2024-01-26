@@ -1,11 +1,10 @@
-import AuthTemplate from "./AuthTemplate";
 import AuthForm from "./AuthForm";
 
 const LoginPage = () => {
     return (
-        <AuthTemplate>
+        <div className="">
             <AuthForm type="login" />
-        </AuthTemplate>
+        </div>
     );
 };
 
