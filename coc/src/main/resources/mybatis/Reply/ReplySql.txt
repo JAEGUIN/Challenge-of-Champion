@@ -1,0 +1,11 @@
+CREATE TABLE coc.reply (
+    seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+    boardSeq VARCHAR(20),
+    userSeq VARCHAR(20),
+    createdBy VARCHAR(20),
+    updatedBy VARCHAR(20),
+    createdAt CHARACTER(19),
+    updatedAt CHARACTER(19),
+    content VARCHAR(100),
+    delYn CHARACTER(1)
+);
