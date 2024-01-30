@@ -115,3 +115,47 @@
   transform: translateX(-50%);
 
 }
+
+.detailContent {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  margin: auto;
+  width: 80%;
+  justify-content: center;
+}
+
+.detailLike {
+  flex: 0 0 30%;
+}
+
+.detailComment {
+  flex: 0 0 40%;
+}
+
+.detailView {
+  flex: 0 0 30%;
+}
+
+.detailCnt {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.reply {
+  margin: 1rem;
+}
+
+.replyContent {
+  margin: 0.5rem;
+}
+
+.replyLike {
+  margin-left: 0.5rem;
+}
+
+.line {
+  border-top: 1px solid #000; /* 선의 색상 및 두께 지정 */
+  width: 100%; /* 선의 가로 길이를 부모 요소에 맞추기 */
+}
