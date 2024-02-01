@@ -18,7 +18,12 @@
                 SELECT count(*)
                 FROM coc.reply r
                 WHERE boardSeq = b.seq
-            ) as replycount
+            ) as replycount,
+            (
+                SELECT count(*)
+                FROM coc.boardHeart bh
+                WHERE bh.boardSeq = b.seq
+            ) as heart
         FROM coc.board b
         LEFT JOIN
             coc.reply r
@@ -28,6 +33,10 @@
             coc.user u
         ON
             u.seq = b.userseq
+        LEFT JOIN
+            coc.boardHeart bh
+        ON
+            b.seq = bh.boardSeq
         WHERE 1=1
             AND b.delYn = 'N'
         <if test="content != null and content != ''">
@@ -55,7 +64,12 @@
                 SELECT count(*)
                 FROM coc.reply r
                 WHERE boardSeq = b.seq
-            ) as replycount
+            ) as replycount,
+            (
+                SELECT count(*)
+                FROM coc.boardHeart bh
+                WHERE bh.boardSeq = b.seq
+            ) as heart
         FROM coc.board b
         LEFT JOIN
             coc.reply r
@@ -65,6 +79,10 @@
             coc.user u
         ON
             u.seq = b.userseq
+        LEFT JOIN
+            coc.boardHeart bh
+        ON
+            b.seq = bh.boardSeq
         WHERE 1=1
             AND b.delYn = 'N'
             AND b.seq = #{seq}

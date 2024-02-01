@@ -40,8 +40,14 @@ public class Board extends CommonModel {
     private String delYn;
 
     /**
-     * 게시판 하트수
+     * 게시판 하트 수
      */
-    @Schema(defaultValue = "게시판 답글수")
+    @Schema(defaultValue = "게시판 하트 수")
+    private int heart;
+
+    /**
+     * 게시판 답글 수
+     */
+    @Schema(defaultValue = "게시판 답글 수")
     private int replycount;
 }
