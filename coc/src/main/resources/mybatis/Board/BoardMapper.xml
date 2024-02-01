@@ -46,11 +46,21 @@
             b.userSeq,
             b.category,
             b.count,
-            b.delYn
+            b.delYn,
+            (
+                SELECT count(*)
+                FROM coc.reply r
+                WHERE boardSeq = b.seq
+            ) as replycount
         FROM coc.board b
+        LEFT JOIN
+        coc.reply r
+        ON
+        b.seq = r.boardSeq
         WHERE 1=1
-            AND delYn = 'N'
-            AND seq = #{seq}
+            AND b.delYn = 'N'
+            AND b.seq = #{seq}
+        GROUP by b.seq
     </select>
 
     <!-- Board 등록 -->
