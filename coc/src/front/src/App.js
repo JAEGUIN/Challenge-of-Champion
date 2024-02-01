@@ -4,6 +4,8 @@ import "./scss/style.scss";
 import Main from './component/Main';
 import RegisterPage from './member/RegisterPage';
 import Login from './member/LoginPage';
+import MyPage from './component/Mypage';  
+
 const App = () => {
 
   return (
@@ -13,6 +15,7 @@ const App = () => {
           <Route path="" element={<Main/>}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/Mypage" element={<MyPage />} />
         </Routes>
       </Router>
     </div>

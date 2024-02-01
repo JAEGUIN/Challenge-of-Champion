@@ -115,3 +115,22 @@
   transform: translateX(-50%);
 
 }
+
+.fl{
+  float: left;
+}
+
+.mypageDiv{
+  float: left;
+  width: 100%;
+}
+
+.mypageDiv > div{
+  float: left;
+  //width: 50%;
+  margin: 0 10px;
+}
+
+.mypageDiv > ul > li {
+  float: left;
+}

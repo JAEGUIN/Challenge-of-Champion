@@ -1,0 +1,42 @@
+
+.tabDiv > ul{
+   // background-color: #dcdcdc;
+  color: rgb(232, 234, 237);
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  margin-bottom: 7rem;
+  margin-top: 10px;
+  border-bottom: 1px solid;
+
+
+  .submenu {
+  // 기본 Tabmenu 에 대한 CSS를 구현
+    //display: flex;
+    /* justify-content: space-between;
+    width: 380px;
+    heigth: 30px; */
+    width: calc(100% /3);
+    padding: 0px 10px;
+    font-size: 15px;
+    transition: 0.5s;
+  }
+
+  .focused {
+   //선택된 Tabmenu 에만 적용되는 CSS를 구현
+    //background-color: rgb(255,255,255);
+    color: rgb(21,20,20);
+    border-bottom: 2px solid rgb(210, 42, 42);
+  }
+
+  & div.desc {
+    text-align: center;
+  }
+}
+
+.tabDiv > ul > li {
+  margin-bottom: 0px !important;
+  text-align: center;
+}

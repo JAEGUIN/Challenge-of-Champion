@@ -111,7 +111,7 @@ const AuthForm = ({ type }) => {
                     
                     <ul>
                         <li  style={{ float: 'left' }}>
-                            <Button $cyan $fullWidth >{text}</Button>
+                            <Button>{text}</Button>
                         </li>
                         <li style={{ float: 'right' }}>
                             {type === 'login' ? (
