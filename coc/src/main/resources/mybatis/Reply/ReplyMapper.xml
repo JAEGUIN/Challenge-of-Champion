@@ -6,8 +6,12 @@
     <select id="selectReplyList" resultType="com.project.coc.reply.model.Reply">
         SELECT
             r.content,
-            r.userSeq
+            u.nickname
         FROM coc.reply r
+        LEFT JOIN
+            coc.user u
+        ON
+            u.seq = r.userSeq
         WHERE 1=1
             AND r.delYn = 'N'
             AND r.boardSeq = #{boardSeq}
@@ -17,11 +21,16 @@
     <!-- Reply 조회 -->
     <select id="selectReply" resultType="com.project.coc.reply.model.Reply">
         SELECT
-            r.content
+            r.content,
+            u.nickname
         FROM coc.reply r
+        LEFT JOIN
+            coc.user u
+        ON
+            u.seq = r.userSeq
         WHERE 1=1
-            AND delYn = 'N'
-            AND seq = #{seq}
+            AND r.delYn = 'N'
+            AND r.seq = #{seq}
     </select>
 
     <!-- Reply 등록 -->

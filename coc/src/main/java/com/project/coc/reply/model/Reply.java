@@ -24,8 +24,8 @@ public class Reply extends CommonModel {
     /**
      * 작성자Seq
      */
-    @Schema(defaultValue = "작성자Seq")
-    private String userSeq;
+    @Schema(defaultValue = "작성자 닉네임")
+    private String nickname;
 
     /**
      * 삭제 여부
