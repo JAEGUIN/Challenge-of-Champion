@@ -6,15 +6,25 @@
     <select id="selectReplyList" resultType="com.project.coc.reply.model.Reply">
         SELECT
             r.content,
-            u.nickname
+            u.nickname,
+            (
+                SELECT count(*)
+                FROM coc.replyHeart rh
+                WHERE  rh.replySeq = r.seq
+            ) as heart
         FROM coc.reply r
         LEFT JOIN
             coc.user u
         ON
             u.seq = r.userSeq
+        LEFT JOIN
+            coc.replyHeart rh
+        ON
+            r.seq = rh.replySeq
         WHERE 1=1
             AND r.delYn = 'N'
             AND r.boardSeq = #{boardSeq}
+        GROUP by r.seq
     </select>
 
 

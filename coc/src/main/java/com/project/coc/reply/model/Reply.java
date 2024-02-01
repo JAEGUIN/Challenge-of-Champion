@@ -28,6 +28,12 @@ public class Reply extends CommonModel {
     private String nickname;
 
     /**
+     * 답변 하트
+     */
+    @Schema(defaultValue = "하트 수")
+    private int heart;
+
+    /**
      * 삭제 여부
      */
     @Schema(defaultValue = "삭제여부")
