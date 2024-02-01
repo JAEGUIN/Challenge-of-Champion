@@ -10,7 +10,7 @@
         SELECT
             b.seq,
             b.content,
-            b.userSeq,
+            u.nickname,
             b.category,
             b.count,
             b.delYn,
@@ -24,6 +24,10 @@
             coc.reply r
         ON
             b.seq = r.boardSeq
+        LEFT JOIN
+            coc.user u
+        ON
+            u.seq = b.userseq
         WHERE 1=1
             AND b.delYn = 'N'
         <if test="content != null and content != ''">
@@ -43,7 +47,7 @@
         SELECT
             b.seq,
             b.content,
-            b.userSeq,
+            u.nickname,
             b.category,
             b.count,
             b.delYn,
@@ -54,9 +58,13 @@
             ) as replycount
         FROM coc.board b
         LEFT JOIN
-        coc.reply r
+            coc.reply r
         ON
-        b.seq = r.boardSeq
+            b.seq = r.boardSeq
+        LEFT JOIN
+            coc.user u
+        ON
+            u.seq = b.userseq
         WHERE 1=1
             AND b.delYn = 'N'
             AND b.seq = #{seq}

@@ -30,8 +30,8 @@ public class Board extends CommonModel {
     /**
      * 게시판 작성자명
      */
-    @Schema(defaultValue = "작성자명")
-    private String userName;
+    @Schema(defaultValue = "작성자 닉네임")
+    private String nickname;
 
     /**
      * 삭제 여부
