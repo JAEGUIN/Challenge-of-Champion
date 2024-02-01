@@ -1,0 +1,5 @@
+CREATE TABLE coc.boardHeart (
+    seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+    boardSeq VARCHAR(20),
+    userSeq VARCHAR(20)
+);
