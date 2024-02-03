@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.coc.reply.mapper.ReplyMapper">
+
+    <!-- Reply 목록조회(by게시물) -->
+    <select id="selectReplyList" resultType="com.project.coc.reply.model.Reply">
+        SELECT
+            r.content,
+            u.nickname,
+            (
+                SELECT count(*)
+                FROM coc.replyHeart rh
+                WHERE  rh.replySeq = r.seq
+            ) as heart
+        FROM coc.reply r
+        LEFT JOIN
+            coc.user u
+        ON
+            u.seq = r.userSeq
+        LEFT JOIN
+            coc.replyHeart rh
+        ON
+            r.seq = rh.replySeq
+        WHERE 1=1
+            AND r.delYn = 'N'
+            AND r.boardSeq = #{boardSeq}
+        GROUP by r.seq
+    </select>
+
+
+    <!-- Reply 조회 -->
+    <select id="selectReply" resultType="com.project.coc.reply.model.Reply">
+        SELECT
+            r.content,
+            u.nickname
+        FROM coc.reply r
+        LEFT JOIN
+            coc.user u
+        ON
+            u.seq = r.userSeq
+        WHERE 1=1
+            AND r.delYn = 'N'
+            AND r.seq = #{seq}
+    </select>
+
+    <!-- Reply 등록 -->
+    <insert id="regiReply">
+        INSERT INTO coc.reply
+        (
+            boardSeq        /* 게시판번호 */
+        ,   userSeq         /* 유저번호 */
+        ,   createdAt       /* 생성일시 */
+        ,   updatedAt       /* 수정일시 */
+        ,   content         /* 답변내용 */
+        ,   delYn           /* 삭제여부 */
+        )VALUES(
+            #{boardSeq}     /* 게시판번호 */
+        ,   #{userSeq}      /* 유저번호 */
+        ,   SYSDATE()       /* 생성일시 */
+        ,   SYSDATE()       /* 수정일시 */
+        ,   #{content}      /* 답변내용 */
+        ,   'N'             /* 삭제여부 */
+        )
+    </insert>
+
+    <!-- Reply 수정 -->
+    <update id="updateReply">
+        UPDATE coc.reply
+        SET
+            content = #{content}    /* 답변내용 */
+        ,   updatedAt = SYSDATE()   /* 수정일시 */
+        WHERE seq = #{seq}
+    </update>
+
+    <!-- Reply 삭제 -->
+    <delete id="deleteReply">
+        UPDATE coc.reply
+        SET
+            delYn = 'Y'            /* 삭제코드 */
+        ,   updatedAt = SYSDATE()   /* 삭제일시 */
+        WHERE seq = #{seq}
+    </delete>
+</mapper>

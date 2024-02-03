@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.coc.board.mapper.BoardMapper">
+
+    <!-- board 리스트 조회 -->
+    <select id="selectBoardList"
+            parameterType="com.project.coc.board.model.SearchBoardRequest"
+            resultType="com.project.coc.board.model.Board"
+    >
+        SELECT
+            b.seq,
+            b.content,
+            u.nickname,
+            b.category,
+            b.count,
+            b.delYn,
+            (
+                SELECT count(*)
+                FROM coc.reply r
+                WHERE boardSeq = b.seq
+            ) as replycount,
+            (
+                SELECT count(*)
+                FROM coc.boardHeart bh
+                WHERE bh.boardSeq = b.seq
+            ) as heart
+        FROM coc.board b
+        LEFT JOIN
+            coc.reply r
+        ON
+            b.seq = r.boardSeq
+        LEFT JOIN
+            coc.user u
+        ON
+            u.seq = b.userseq
+        LEFT JOIN
+            coc.boardHeart bh
+        ON
+            b.seq = bh.boardSeq
+        WHERE 1=1
+            AND b.delYn = 'N'
+        <if test="content != null and content != ''">
+            AND content = #{content}
+        </if>
+        <if test="category != null and category != ''">
+            AND category = #{category}
+        </if>
+        <if test="userName != null and userName != ''">
+            AND userName = #{userName}
+        </if>
+        GROUP by b.seq
+    </select>
+
+    <!-- Board 상세조회-->
+    <select id="selectBoard" resultType="com.project.coc.board.model.Board">
+        SELECT
+            b.seq,
+            b.content,
+            u.nickname,
+            b.category,
+            b.count,
+            b.delYn,
+            (
+                SELECT count(*)
+                FROM coc.reply r
+                WHERE boardSeq = b.seq
+            ) as replycount,
+            (
+                SELECT count(*)
+                FROM coc.boardHeart bh
+                WHERE bh.boardSeq = b.seq
+            ) as heart
+        FROM coc.board b
+        LEFT JOIN
+            coc.reply r
+        ON
+            b.seq = r.boardSeq
+        LEFT JOIN
+            coc.user u
+        ON
+            u.seq = b.userseq
+        LEFT JOIN
+            coc.boardHeart bh
+        ON
+            b.seq = bh.boardSeq
+        WHERE 1=1
+            AND b.delYn = 'N'
+            AND b.seq = #{seq}
+        GROUP by b.seq
+    </select>
+
+    <!-- Board 등록 -->
+    <insert id="regiBoard">
+        INSERT INTO coc.board
+        (
+            userSeq         /* 유저번호 */
+        ,   createdAt       /* 생성일시 */
+        ,   updatedAt       /* 수정일시 */
+        ,   content         /* 게시내용 */
+        ,   category        /* 카테고리 */
+        ,   count           /* 카운트수 */
+        ,   delYn           /* 삭제여부 */
+        )VALUES(
+            #{userSeq}      /* 유저번호 */
+        ,   SYSDATE()       /* 생성일시 */
+        ,   SYSDATE()       /* 수정일시 */
+        ,   #{content}      /* 게시내용 */
+        ,   #{category}     /* 카테고리 */
+        ,   0               /* 카운트수 */
+        ,   'N'             /* 삭제여부 */
+        )
+    </insert>
+
+    <!-- Board 수정 -->
+    <update id="updateBoard">
+        UPDATE coc.board
+        SET
+            content = #{content}       /* 게시내용 */
+        ,   updatedAt = SYSDATE()      /* 수정일시 */
+        WHERE seq = #{seq}
+    </update>
+
+    <!-- Board 삭제 -->
+    <delete id="deleteBoard">
+        UPDATE coc.board
+        SET
+            delYn = 'Y'            /* 삭제코드 */
+        ,   updatedAt = SYSDATE()   /* 삭제일시 */
+        WHERE seq = #{seq}
+    </delete>
+</mapper>

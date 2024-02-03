@@ -1,5 +1,6 @@
 .pageWrapper {
   min-height: 100vh;
+  margin-bottom: 3rem;
 }
 .contentArea {
   flex-grow: 1;
@@ -113,7 +114,14 @@
   bottom: 0.6rem; /* 아래쪽에 배치 */
   left: 50%;
   transform: translateX(-50%);
+}
 
+.registBoard {
+  position: fixed; /* 스크롤 상관없이 아래 */
+  bottom: 0.6rem; /* 아래쪽에 배치 */
+  left:90%;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .detailContent {
@@ -158,4 +166,56 @@
 .line {
   border-top: 1px solid #000; /* 선의 색상 및 두께 지정 */
   width: 100%; /* 선의 가로 길이를 부모 요소에 맞추기 */
+}
+
+
+.registerBoard {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  margin: auto;
+  width: 80%;
+  height: 95vh;
+  justify-content: center;
+}
+
+.registerContent {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+}
+
+.registerTextWrapper {
+  height:70%;
+  margin: 0.3rem;
+}
+
+.registerTitle {
+  border: inset #d1d1d1;
+  padding: 0.5rem;
+}
+
+.registerText {
+  height:80%;
+  line-height:80%;
+  border:inset #d1d1d1;
+  vertical-align: text-top;
+  padding: 0.5rem;
+}
+
+.registBtn {
+  margin-bottom: 3rem;
+  bottom: 0.6rem;
+}
+
+.registCancel {
+  left: 0%;
+  margin: 1rem;
+  width: 100px;
+}
+
+.registerBtn {
+  
+  margin: 1rem;
+  width: 100px;
 }

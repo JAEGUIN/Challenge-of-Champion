@@ -1,5 +1,6 @@
 import React from "react";
 import Reply from "./Reply";
+import RegisterReply from "./RegisterReply";
 
 const DetailContent = () => {
     return (
@@ -32,6 +33,7 @@ const DetailContent = () => {
                 <Reply/>
                 <Reply/>
             </div>
+            <RegisterReply/>
         </div>
     );
 };

@@ -7,6 +7,7 @@ import RegisterPage from './member/RegisterPage';
 import Login from './member/LoginPage';
 import DetailContent from './component/DetailContent';
 import Home from './component/Home';
+import RegisterBoard from './component/RegisterBoard';
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route element={<Main />} >
             <Route path="/" element={<Home />} />
             <Route path="/detailContent" element={<DetailContent />} />
+            <Route path="/registerBoard" element={<RegisterBoard />} />
           </Route>
         </Routes>
       </Router>

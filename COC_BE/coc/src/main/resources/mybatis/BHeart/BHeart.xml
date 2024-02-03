@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.coc.boardHeart.mapper.BHeartMapper">
+
+    <!-- BoardHeart 등록 -->
+    <insert id="postHeart">
+        INSERT INTO coc.boardHeart
+        (
+            boardSeq        /* 보드번호 */
+        ,   userSeq         /* 유저번호 */
+        )VALUES(
+            #{boardSeq}     /* 보드번호 */
+        ,    #{userSeq}      /* 유저번호 */
+        )
+    </insert>
+
+    <!-- BoardHeart 삭제 -->
+    <delete id="deleteHeart">
+        DELETE FROM coc.boardHeart
+        WHERE seq = #{seq};
+    </delete>
+</mapper>

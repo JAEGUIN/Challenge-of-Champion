@@ -1,0 +1,5 @@
+CREATE TABLE coc.replyHeart (
+    seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+    replySeq VARCHAR(20),
+    userSeq VARCHAR(20)
+);
