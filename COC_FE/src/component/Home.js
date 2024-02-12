@@ -19,7 +19,7 @@ const Home = () => {
     useEffect(() => {
         console.log(contentData);
         for(const content of contentData) {
-            console.log(content["content"]);
+            //console.log(content["content"]);
         }
 
     }, [contentData]);
