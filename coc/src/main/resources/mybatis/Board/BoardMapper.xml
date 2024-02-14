@@ -49,6 +49,8 @@
             AND userName = #{userName}
         </if>
         GROUP by b.seq
+        ORDER by b.seq DESC
+        LIMIT 10 OFFSET #{pageNum}
     </select>
 
     <!-- Board 상세조회-->

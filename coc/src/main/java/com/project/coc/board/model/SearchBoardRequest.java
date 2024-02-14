@@ -25,4 +25,10 @@ public class SearchBoardRequest {
      */
     @Schema(defaultValue = "검색할 작성자명")
     private String userName;
+
+    /**
+     * 게시판 페이징수
+     */
+    @Schema(defaultValue = "페이징 숫자")
+    private Integer pageNum;
 }
