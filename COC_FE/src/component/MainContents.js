@@ -14,7 +14,6 @@ const MainContents = (props) => {
     const [nickName, setNickName] = useState("");
 
     useEffect(() => {
-        console.log(props);
         setContent(props.data.content);
         setNickName(props.data.nickname);
     }, []);

@@ -1,15 +1,15 @@
 import React,{useState} from "react";
 import { Button } from "reactstrap";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const RegisterBoard = () => {
+const RegisterBoard = ({ history, location, match }) => {
 
-    const [titleValue, setTitleValue] = useState('');
     const [textValue, setTextValue] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
 
-    const handleTitleChange = (e) => {
-        setTitleValue(e.target.value);
-    };
+    // 페이지이동
+    const navigate = useNavigate();
 
     const handleTextChange = (e) => {
         setTextValue(e.target.value);
@@ -18,6 +18,33 @@ const RegisterBoard = () => {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setSelectedFile(file);
+    };
+
+    const registBoard = () => {
+
+        if(!window.confirm("해당 게시판을 등록하시겠습니까?")) {
+            return;
+        }
+
+        axios.post('board/regi', {
+            content: textValue,
+            category: "b1",
+            "userSeq" : 1
+        })
+        .then(response => {
+            // 요청이 성공한 경우의 처리
+            alert("성공적으로 저장하였습니다!");
+            goHome();
+        })
+        .catch(error => {
+            // 요청이 실패한 경우의 처리
+            alert('에러 발생:', error);
+        });
+    };
+
+    // 홈으로 돌아가기
+    const goHome = () => {
+        navigate('/');
     };
 
     const handleSubmit = () => {
@@ -38,15 +65,14 @@ const RegisterBoard = () => {
 
             <div className="registerContent">
                 <div className="registerTextWrapper">
-                    <input type="text" className="registerTitle" placeholder="제목" value={titleValue} onChange={handleTitleChange} />
                     <input type="text" className="registerText" placeholder="내용" value={textValue} onChange={handleTextChange} />
                 </div>
                 <input type="file" className="registerFile" onChange={handleFileChange} />
             </div>
 
             <div className="d-flex registBtn">
-                <Button className="registCancel">취소</Button>
-                <Button className="registerBtn">등록/수정</Button>
+                <Button className="registCancel" onClick={goHome}>취소</Button>
+                <Button className="registerBtn" onClick={registBoard}>등록/수정</Button>
             </div>
         </div>
     );

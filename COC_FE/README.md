@@ -74,4 +74,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### 
 ### npm install scss react-router-dom reactstrap bootstrap bootstrap-icons
+### npm install --save-dev http-proxy-middleware
 ###
