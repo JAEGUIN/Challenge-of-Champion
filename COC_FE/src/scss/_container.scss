@@ -223,3 +223,21 @@
 .insertReply {
   width: 70px;
 }
+
+.userDetail {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  margin: auto;
+  width: 80%;
+  height: 95vh;
+  justify-content: center;
+}
+
+.profilMenu {
+  display: flex;
+  justify-content: space-between; /* 요소들을 동일한 간격으로 배치합니다. */
+}
+
+.guestBook {
+  margin: 1rem;
+}

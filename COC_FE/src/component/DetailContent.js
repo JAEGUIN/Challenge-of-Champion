@@ -1,14 +1,21 @@
 import React from "react";
 import Reply from "./Reply";
 import RegisterReply from "./RegisterReply";
+import { useNavigate } from 'react-router-dom';
 
 const DetailContent = () => {
+    const navigate = useNavigate();
+
+    const goProfil = () => {
+        navigate('/userDetail');
+    };
+
     return (
         <div className="detailContent">
             <div className="d-flex">
-                <img src="/img/sample.jpg" className="contentProfileImg"/>
+                <img src="/img/sample.jpg" className="contentProfileImg" onClick={goProfil}/>
                 <div className="profileDesc d-flex">
-                    <div className="profileName">대한민국</div>
+                    <div className="profileName" onClick={goProfil}>대한민국</div>
                     <div className="contentDate right-align-container"> 2024/01/01 </div>
                 </div>
             </div>

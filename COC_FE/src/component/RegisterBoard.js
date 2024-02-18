@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const RegisterBoard = ({ history, location, match }) => {
+const RegisterBoard = () => {
 
     const [textValue, setTextValue] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
