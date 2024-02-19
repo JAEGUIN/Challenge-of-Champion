@@ -13,6 +13,8 @@
             u.nickname,
             b.category,
             b.count,
+            b.createdAt,
+            b.updatedAt,
             b.delYn,
             (
                 SELECT count(*)
@@ -61,6 +63,8 @@
             u.nickname,
             b.category,
             b.count,
+            b.createdAt,
+            b.updatedAt,
             b.delYn,
             (
                 SELECT count(*)

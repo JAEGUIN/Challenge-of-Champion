@@ -6,6 +6,8 @@
     <select id="selectReplyList" resultType="com.project.coc.reply.model.Reply">
         SELECT
             r.content,
+            r.createdAt,
+            r.updatedAt,
             u.nickname,
             (
                 SELECT count(*)
@@ -32,6 +34,8 @@
     <select id="selectReply" resultType="com.project.coc.reply.model.Reply">
         SELECT
             r.content,
+            r.createdAt,
+            r.updatedAt,
             u.nickname
         FROM coc.reply r
         LEFT JOIN
