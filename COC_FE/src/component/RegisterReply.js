@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
-const RegisterReply = () => {
+const RegisterReply = (props) => {
     const [textValue, setTextValue] = useState('');
 
     // 페이지이동
@@ -21,13 +21,13 @@ const RegisterReply = () => {
 
         axios.post('reply/regi', {
             content: textValue,
-            boardSeq : 1,
+            boardSeq : props.boardSeq,
             "userSeq" : 1
         })
         .then(response => {
             // 요청이 성공한 경우의 처리
             alert("성공적으로 저장하였습니다!");
-            //goHome();
+            window.location.reload();
         })
         .catch(error => {
             // 요청이 실패한 경우의 처리

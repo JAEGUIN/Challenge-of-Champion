@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Reply from "./Reply";
 import RegisterReply from "./RegisterReply";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const DetailContent = () => {
+    const [contentData, setContentData] = useState('');
+    const [replyData, setReplyData] = useState([]);
+    const location = useLocation();
     const navigate = useNavigate();
 
     const goProfil = () => {
         navigate('/userDetail');
     };
+
+    // 처음에 시작
+    const fetchData = async () => {
+        try {
+          const response = await axios.get('/reply', {
+            params: {
+                boardSeq: location.state.boardData.data.seq
+            }
+          });
+          setReplyData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+    useEffect(() => {
+        setContentData(location.state.boardData.data.content);
+        fetchData();
+    }, []);
 
     return (
         <div className="detailContent">
@@ -20,7 +42,7 @@ const DetailContent = () => {
                 </div>
             </div>
             <div>
-                <div>메밀꽃 필 무렵<br></br>여름장이란 애시당초 글러서 해는 아직 중천에 있건만 장판은 벌써 쓸쓸하고 더운 햇발이 벌려 놓은 전시장 밑으로 등줄기를 훅훅 볶는다. </div>
+                <div> {contentData} </div>
                 <img src="/img/sampleContent.jpg" className="contentImg"/>
             </div>
 
@@ -37,10 +59,15 @@ const DetailContent = () => {
             </div>
 
             <div>
-                <Reply/>
-                <Reply/>
+                {replyData.length === 0 ? (
+                    <p> 답글이 없습니다. </p>
+                ): (
+                    replyData.map((item) => (
+                        <Reply data={item}/>
+                    ))
+                )}
             </div>
-            <RegisterReply/>
+            <RegisterReply boardSeq={location.state.boardData.data.seq}/>
         </div>
     );
 };
