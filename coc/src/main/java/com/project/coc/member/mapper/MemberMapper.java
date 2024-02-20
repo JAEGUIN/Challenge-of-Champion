@@ -1,9 +1,6 @@
 package com.project.coc.member.mapper;
 
-import com.project.coc.member.model.LoginMemberRequest;
-import com.project.coc.member.model.MemberResponse;
-import com.project.coc.member.model.PostMemberRequest;
-import com.project.coc.member.model.UpdateMemberRequest;
+import com.project.coc.member.model.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +12,7 @@ public interface MemberMapper {
 
     MemberResponse selectMember(Long seq);
 
-    MemberResponse loginMember(LoginMemberRequest request);
+    String  loginMember(LoginMemberRequest request);
 
     void regiMember(PostMemberRequest request);
 
@@ -24,4 +21,5 @@ public interface MemberMapper {
     void deleteMember(Long seq);
 
 
+    MemberResponse selectMemberByEmail(String email);
 }
