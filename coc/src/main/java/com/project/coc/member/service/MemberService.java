@@ -8,9 +8,9 @@ import com.project.coc.member.model.UpdateMemberRequest;
 import java.util.List;
 
 public interface MemberService {
-    void regiMember(PostMemberRequest request);
+    void joinProcess(PostMemberRequest request) throws Exception;
 
-    MemberResponse loginMember(LoginMemberRequest request);
+    String  loginMember(LoginMemberRequest request) throws Exception;
 
     void updateMember(Long seq, UpdateMemberRequest request);
 
@@ -19,4 +19,7 @@ public interface MemberService {
     List<MemberResponse> selectAllMembers();
 
     MemberResponse selectMember(Long seq);
+
+    MemberResponse selectMemberByEmail(String email);
+
 }

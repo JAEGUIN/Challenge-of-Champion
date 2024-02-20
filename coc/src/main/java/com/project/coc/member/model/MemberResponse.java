@@ -8,6 +8,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class MemberResponse extends CommonModel {
+
     @Schema(defaultValue = "test@test.com")
     private String email;
     @Schema(defaultValue = "password")
