@@ -1,5 +1,6 @@
 package com.project.coc.member.controller;
 
+import com.project.coc.jwt.JwtFilter;
 import com.project.coc.member.model.LoginMemberRequest;
 import com.project.coc.member.model.MemberResponse;
 import com.project.coc.member.model.PostMemberRequest;
@@ -8,8 +9,13 @@ import com.project.coc.member.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +26,7 @@ import java.util.Map;
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
-
+    private final AuthenticationManagerBuilder authenticationManager;
     private final MemberService memberService;
     HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 기본적으로 서버 오류 상태 코드 반환
     @Operation(summary="유저 등록")
@@ -32,7 +38,7 @@ public class MemberController {
             return ResponseEntity.ok("회원 가입이 완료되었습니다.");
         }catch (DataIntegrityViolationException e) {
             // 데이터베이스 제약 조건 위반 예외 처리
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원 가입 중 오류가 발생했습니다. 이미 존재하는 이메일이거나 다른 제약 조건을 위반했습니다.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 존재하는 이메일이거나 다른 제약 조건을 위반했습니다.");
         }catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -42,7 +48,7 @@ public class MemberController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginMemberRequest request) {
         try {
-            return ResponseEntity.ok(memberService.loginMember(request));//성공시 JWT_token 반환
+            return ResponseEntity.status(HttpStatus.OK).body(memberService.loginMember(request));//성공시 JWT_token 반환
         } catch (Exception e) {
             String errorMessage = e.getMessage();
 

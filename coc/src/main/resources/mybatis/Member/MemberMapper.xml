@@ -78,10 +78,11 @@
         UPDATE coc.user
         SET
             updatedAt = SYSDATE(),
-            email = #{email},
             password = #{password},
             nickName = #{nickName},
             profileCont = #{profileCont}
+        WHERE seq= #{seq}
+
     </update>
 
     <delete id="deleteMember">

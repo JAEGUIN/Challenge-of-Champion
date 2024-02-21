@@ -7,12 +7,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateMemberRequest {
-
+    @Schema(defaultValue = "0")
+    private Long seq;
 
     @Schema(defaultValue = "password")
     private String password;
+
     @Schema(defaultValue = "testUser")
     private String nickName;
+
     @Schema(defaultValue = "Hi,I'm test user")
     private String profileCont;
 

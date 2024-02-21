@@ -16,10 +16,9 @@ public interface MemberMapper {
 
     void regiMember(PostMemberRequest request);
 
-    void updateMember(Long seq, UpdateMemberRequest request);
+    void updateMember(UpdateMemberRequest request);
 
     void deleteMember(Long seq);
-
 
     MemberResponse selectMemberByEmail(String email);
 }

@@ -1,6 +1,6 @@
 package com.project.coc.member.service.Impl;
 
-import com.project.coc.jwt.JwtUtils;
+import com.project.coc.jwt.JwtProvider;
 import com.project.coc.member.mapper.MemberMapper;
 import com.project.coc.member.model.LoginMemberRequest;
 import com.project.coc.member.model.MemberResponse;
@@ -24,9 +24,9 @@ public class MemberServiceImpl implements MemberService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
+    //회원가입
     @Override
-    public void joinProcess(PostMemberRequest request) throws Exception  {
+    public void joinProcess(PostMemberRequest request) throws Exception {
         MemberResponse member = memberMapper.selectMemberByEmail(request.getEmail());
         if (member != null) {
             throw new Exception("해당 계정은 이미 존재합니다");
@@ -37,6 +37,7 @@ public class MemberServiceImpl implements MemberService {
         memberMapper.regiMember(request);
     }
 
+    //로그인
     @Override
     public String loginMember(LoginMemberRequest request) throws Exception {
 
@@ -51,49 +52,38 @@ public class MemberServiceImpl implements MemberService {
             throw new Exception("비밀번호가 틀렸습니다");
         }
 
-        return JwtUtils.generateToken(request.getEmail());
+        return JwtProvider.generateToken(member.getEmail(), member.getRole());
     }
 
+    //유저 정보 업데이트
     @Override
     public void updateMember(Long seq, UpdateMemberRequest request) {
-        try {
-            memberMapper.updateMember(seq, request);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        request.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));//비밀번호 암호화
+        memberMapper.updateMember(request);
     }
 
+    //유저 삭제
     @Override
     public void deleteMember(Long seq) {
-        try {
-            memberMapper.deleteMember(seq);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        memberMapper.deleteMember(seq);
     }
 
+    //유저 전체 조회
     @Override
     public List<MemberResponse> selectAllMembers() {
-        try {
-            return memberMapper.selectAllMembers();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Collections.emptyList();
-        }
+        return memberMapper.selectAllMembers();
     }
 
+    //유저 상세 조회(seq)
     @Override
     public MemberResponse selectMember(Long seq) {
-        try {
-            return memberMapper.selectMember(seq);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return memberMapper.selectMember(seq);
     }
 
+    //유저 상세 조회(email)
     @Override
     public MemberResponse selectMemberByEmail(String email) {
-        return  memberMapper.selectMemberByEmail(email);
+        return memberMapper.selectMemberByEmail(email);
     }
 }
