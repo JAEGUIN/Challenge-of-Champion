@@ -1,16 +1,13 @@
 package com.project.coc.member.service;
 
-import com.project.coc.member.model.LoginMemberRequest;
-import com.project.coc.member.model.MemberResponse;
-import com.project.coc.member.model.PostMemberRequest;
-import com.project.coc.member.model.UpdateMemberRequest;
+import com.project.coc.member.model.*;
 
 import java.util.List;
 
 public interface MemberService {
     void joinProcess(PostMemberRequest request) throws Exception;
 
-    String  loginMember(LoginMemberRequest request) throws Exception;
+    SignInResponse loginMember(LoginMemberRequest request) throws Exception;
 
     void updateMember(Long seq, UpdateMemberRequest request);
 

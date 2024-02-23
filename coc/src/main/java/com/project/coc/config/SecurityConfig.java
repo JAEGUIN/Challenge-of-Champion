@@ -4,25 +4,16 @@ import com.project.coc.jwt.JwtAccessDeniedHandler;
 import com.project.coc.jwt.JwtAuthenticationEntryPoint;
 import com.project.coc.jwt.JwtFilter;
 import com.project.coc.jwt.JwtProvider;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -53,6 +44,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/member/login", "/", "/member/join","/member/*","/board/*").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()//swagger 사용을 위함
+                        .anyRequest().authenticated()
                 );
         //authentication
         http

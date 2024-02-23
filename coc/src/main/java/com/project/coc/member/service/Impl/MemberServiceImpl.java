@@ -2,17 +2,13 @@ package com.project.coc.member.service.Impl;
 
 import com.project.coc.jwt.JwtProvider;
 import com.project.coc.member.mapper.MemberMapper;
-import com.project.coc.member.model.LoginMemberRequest;
-import com.project.coc.member.model.MemberResponse;
-import com.project.coc.member.model.PostMemberRequest;
-import com.project.coc.member.model.UpdateMemberRequest;
+import com.project.coc.member.model.*;
 import com.project.coc.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -39,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 
     //로그인
     @Override
-    public String loginMember(LoginMemberRequest request) throws Exception {
+    public SignInResponse loginMember(LoginMemberRequest request) throws Exception {
 
         MemberResponse member = memberMapper.selectMemberByEmail(request.getEmail());
         if (member == null) {
@@ -51,8 +47,9 @@ public class MemberServiceImpl implements MemberService {
         if (!bCryptPasswordEncoder.matches(request.getPassword(), member.getPassword())) {
             throw new Exception("비밀번호가 틀렸습니다");
         }
+        String token=JwtProvider.generateToken(member.getEmail(), member.getRole());
 
-        return JwtProvider.generateToken(member.getEmail(), member.getRole());
+        return new SignInResponse(member.getSeq(),member.getEmail(),member.getRole(),token);
     }
 
     //유저 정보 업데이트
