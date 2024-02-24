@@ -8,11 +8,15 @@ const Home = () => {
     const [contentData, setContentData] = useState([]);
     const [pageNum, setPageNum] = useState(0);
     const [getData, setGetData] = useState(true);
+    const token = localStorage.getItem('token');
 
     // 처음에 시작
     const fetchData = async () => {
         try {
           const response = await axios.get('/board', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            },
             params: {
               pageNum: pageNum
             }
@@ -21,6 +25,7 @@ const Home = () => {
             alert("더 이상 조회할 데이터가 없습니다.");
             setGetData(false);
           } else {
+            console.log(response.data);
             setContentData(prevData => [...prevData, ...response.data]);
           }
         } catch (error) {

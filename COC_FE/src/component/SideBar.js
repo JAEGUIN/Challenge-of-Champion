@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "reactstrap";
+import axios from 'axios';
 
 {/* 사이드바 */}
 const SideBar = () => {
+    const [nickName,setNickName] = useState('임시닉네임');
+    // jwt
+    const token = localStorage.getItem('token');
+    const seq = localStorage.getItem('seq');
 
     const showMobilemenu = () => {
         document.getElementById("sidebarArea").classList.toggle("showSidebar");
@@ -11,6 +16,31 @@ const SideBar = () => {
 
      {/* 현재 페이지 정보 */}
     let location = useLocation();
+
+     // 처음에 시작
+    const fetchData = async () => {
+        axios.get('member', {
+          seq: seq
+      },
+      {
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      })
+      .then(response => {
+          // 요청이 성공한 경우의 처리
+          console.log(response.data);
+      })
+      .catch(error => {
+          // 요청이 실패한 경우의 처리
+          alert('에러 발생:', error);
+      });
+    };
+
+    // 시작 시 호출
+    useEffect(() => {
+      //fetchData();
+    },[]);
 
     return (
         <div className="p-3 sidebar-container">
@@ -27,7 +57,7 @@ const SideBar = () => {
             <div className="d-flex align-items-center">
                 <img src="/img/sample.jpg" className="profileImg"/>
                 <div className="profileDesc">
-                    <div className="profileName">대한민국</div>
+                    <div className="profileName">{nickName}</div>
                     <div className="d-flex">
                         <div className="followCount">팔로워 <br/> 5000</div>
                         <div className="followCount">팔로잉 <br/> 5000</div>

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SideBar from "./SideBar";
 import Header from './Header';
 import { Button } from "reactstrap";
 import { BrowserRouter as Router, Route, Routes, Outlet, useNavigate } from 'react-router-dom';
 
 const Main = () => {
+
+  // jwt
+  const token = localStorage.getItem('token');
+  const seq = localStorage.getItem('seq');
 
   const scrollToTop = () => {
     // window.scrollTo 메서드를 사용하여 스크롤을 최상단으로 이동

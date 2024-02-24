@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "reactstrap";
 import { useState } from 'react';
-
+import axios from 'axios';
 
 const textMap = {
     login: '로그인',
@@ -11,9 +11,12 @@ const textMap = {
 const AuthForm = ({ type }) => {
 
     const text = textMap[type];
-
+    const [emailValue, setEmailValue] = useState(''); // email
+    const [pwValue, setPwValue] = useState('');
+    const [pwCheck, setPwCheck] = useState('');
+    const [nickName, setNickName] = useState('');
     const [allAgreed, setAllagreed] = useState(false);
-
+    
     const [agreements, setAgreements] = useState({
         termsAgreed: false,
         presnalInfoAgreed: false,
@@ -21,6 +24,29 @@ const AuthForm = ({ type }) => {
         marketingAgreed: false,
         ageAgreed: false,
     });
+
+    // 페이지이동
+    const navigate = useNavigate();
+
+    // email 입력 시 
+    const handleEmailChange = (e) => {
+        setEmailValue(e.target.value);
+    };
+
+    // password 입력 시 
+    const handlePWChange = (e) => {
+        setPwValue(e.target.value);
+    };
+
+    // 비밀번호확인 입력 시 
+    const handlePWCheckChange = (e) => {
+        setPwCheck(e.target.value);
+    };
+
+    // nickname 입력 시 
+    const handleNickNameChange = (e) => {
+        setNickName(e.target.value);
+    };
 
     const handlAgreeChange = (event) => {
         const { name, checked } = event.target;
@@ -46,6 +72,77 @@ const AuthForm = ({ type }) => {
         setAllagreed(checked);
     };
 
+    // 로그인 및 회원가입
+    const btnClick = () => {
+        if(type === 'register') // 회원가입
+        {
+            if(!emailCheck(emailValue)) {
+                alert("올바른 이메일을 입력하세요.");
+                return;
+            }
+            if(pwValue != pwCheck) {
+                alert("비밀번호를 확인하세요");
+                return;
+            }
+            if(!allAgreed) {
+                alert("모든 약관에 동의하셔야 합니다");
+                return;
+            }
+
+            axios.post('member/join', {
+                email: emailValue,
+                password: pwValue,
+                nickName: nickName,
+                delYn: 'N',
+                profileCont: "안녕하세요.",
+                role:'user'
+            })
+            .then(response => {
+                // 요청이 성공한 경우의 처리
+                alert("성공적으로 회원가입하였습니다!");
+                navigate('/login');
+            })
+            .catch(error => {
+                // 요청이 실패한 경우의 처리
+                alert('에러 발생:', error);
+            });
+        } else { // 로그인
+            axios.post('member/login', {
+                email: emailValue,
+                password: pwValue
+            })
+            .then(response => {
+                // 요청이 성공한 경우의 처리
+                alert("성공적으로 로그인하였습니다!");
+                // jwt 및 user정보 저장
+                const { token } = response.data;
+                const { email } = response.data;
+                const { role } = response.data;
+                const { seq } = response.data;
+
+                localStorage.setItem('token', token);
+                localStorage.setItem('email', email);
+                localStorage.setItem('role', role);
+                localStorage.setItem('seq', seq);
+
+                navigate('/');
+            })
+            .catch(error => {
+                // 요청이 실패한 경우의 처리
+                alert('에러 발생:', error);
+            });
+        }
+    }
+
+    // 이메일 유효성 검사
+    function emailCheck(email_address){     
+        const email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+        if(!email_regex.test(email_address)){ 
+            return false; 
+        }else{
+            return true;
+        }
+    }
 
     return (
         <div className='authDiv'>
@@ -54,11 +151,11 @@ const AuthForm = ({ type }) => {
                 <div>
                     <ul>
                         <li><span>이메일 *</span></li>
-                        <li><input autoComplete='userEmail' name ="userEmail" placeholder='예) ex@gmail.com' /></li>
+                        <li><input autoComplete='userEmail' name ="userEmail" placeholder='예) ex@gmail.com' value={emailValue} onChange={handleEmailChange}/></li>
                     </ul>
                     <ul>
                         <li><span>비밀번호 *</span></li>
-                        <li><input autoComplete='userPassword' name="userPassword" placeholder='영문, 숫자, 특수문자 8~16자' type='password' /></li>
+                        <li><input autoComplete='userPassword' name="userPassword" placeholder='영문, 숫자, 특수문자 8~16자' type='password' value={pwValue} onChange={handlePWChange}/></li>
                     </ul>
                     {type === 'register' && (
                         <ul>
@@ -67,14 +164,18 @@ const AuthForm = ({ type }) => {
                             autoComplete='userPassword'
                             name='pwdConfirm'
                             placeholder=''
-                            type='password' /></li>
+                            type='password' 
+                            value={pwCheck} 
+                            onChange={handlePWCheckChange}/></li>
                         </ul>
                     )}
                     {type === 'register' && (
                         <ul>
                             <li><span>닉네임 *</span></li>
                             <li><input
-                            autoComplete='nickname' name='nickname' placeholder=''/></li>
+                            autoComplete='nickname' name='nickname' placeholder=''
+                            value={nickName} 
+                            onChange={handleNickNameChange}/></li>
                         </ul>
                     )}
 
@@ -111,7 +212,7 @@ const AuthForm = ({ type }) => {
                     
                     <ul>
                         <li  style={{ float: 'left' }}>
-                            <Button $cyan $fullWidth >{text}</Button>
+                            <Button $cyan $fullWidth onClick={btnClick}>{text}</Button>
                         </li>
                         <li style={{ float: 'right' }}>
                             {type === 'login' ? (

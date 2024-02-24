@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 const RegisterReply = (props) => {
     const [textValue, setTextValue] = useState('');
 
+    //jwt
+    const token = localStorage.getItem('token');
+
     // 페이지이동
     const navigate = useNavigate();
 
@@ -22,7 +25,12 @@ const RegisterReply = (props) => {
         axios.post('reply/regi', {
             content: textValue,
             boardSeq : props.boardSeq,
-            "userSeq" : 1
+            userSeq : localStorage.getItem('seq')
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         .then(response => {
             // 요청이 성공한 경우의 처리

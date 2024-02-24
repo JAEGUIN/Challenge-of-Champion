@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Button } from "reactstrap";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,9 @@ const RegisterBoard = () => {
 
     const [textValue, setTextValue] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+
+    // jwt
+    const token = localStorage.getItem('token');
 
     // 페이지이동
     const navigate = useNavigate();
@@ -29,7 +32,11 @@ const RegisterBoard = () => {
         axios.post('board/regi', {
             content: textValue,
             category: "b1",
-            "userSeq" : 1
+            userSeq : localStorage.getItem('seq')
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
         .then(response => {
             // 요청이 성공한 경우의 처리

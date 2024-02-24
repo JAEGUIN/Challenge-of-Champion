@@ -14,6 +14,9 @@ const DetailContent = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    // jwt
+    const token = localStorage.getItem('token');
+
     const goProfil = () => {
         navigate('/userDetail');
     };
@@ -22,6 +25,9 @@ const DetailContent = () => {
     const fetchData = async () => {
         try {
           const response = await axios.get('/reply', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
             params: {
                 boardSeq: location.state.boardData.data.seq
             }
