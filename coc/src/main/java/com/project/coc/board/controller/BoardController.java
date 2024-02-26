@@ -33,8 +33,12 @@ public class BoardController {
 
     @Operation(summary="게시판 상세조회", description = "seq*")
     @GetMapping("/{seq}")
-    public Board selectBoard(@PathVariable("seq") Long seq){
-        return service.selectBoard(seq);
+    public Board selectBoard(@PathVariable("seq") Long seq, HttpServletRequest httpRequest){
+        //HttpSession session = httpRequest.getSession();
+        //String userInfo = (UserInfoDto)session.getAttribute("userInfo");
+        //세션정보 하드코딩
+        int userInfo = 2;
+        return service.selectBoard(seq, userInfo);
     }
 
     @Operation(summary = "게시판 등록", description = "content* , category* , userSeq*")

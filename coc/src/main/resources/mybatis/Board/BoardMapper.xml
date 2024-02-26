@@ -62,6 +62,7 @@
             b.seq,
             b.content,
             u.nickname,
+            b.userSeq,
             b.category,
             b.count,
             b.createdAt,

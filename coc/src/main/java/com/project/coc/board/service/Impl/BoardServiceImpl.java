@@ -47,9 +47,18 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional(readOnly = true)
     @Override
-    public Board selectBoard(Long seq) {
+    public Board selectBoard(Long seq, int userInfo) {
         try {
-            return mapper.selectBoard(seq);
+            Board detail = new Board();
+            detail = mapper.selectBoard(seq);
+            if(userInfo == detail.getUserSeq()){
+                Long boardSeq = detail.getSeq();
+                if(heartMapper.heartCheck(boardSeq, userInfo)>0){
+                    detail.setHeartCheck(true);
+                }
+            }
+            return detail;
+//            return mapper.selectBoard(seq);
         }catch (Exception e){
             e.printStackTrace();
             return null;

@@ -10,7 +10,7 @@ import java.util.List;
 public interface BoardService {
     List<Board> selectBoardList(SearchBoardRequest request, int userInfo);
 
-    Board selectBoard(Long seq);
+    Board selectBoard(Long seq, int userInfo);
 
     void regiBoard(PostBoardRequest request);
 
