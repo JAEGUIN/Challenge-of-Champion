@@ -25,7 +25,6 @@ const Home = () => {
             alert("더 이상 조회할 데이터가 없습니다.");
             setGetData(false);
           } else {
-            console.log(response.data);
             setContentData(prevData => [...prevData, ...response.data]);
           }
         } catch (error) {

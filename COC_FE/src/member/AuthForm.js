@@ -48,6 +48,13 @@ const AuthForm = ({ type }) => {
         setNickName(e.target.value);
     };
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          // Enter 키를 눌렀을 때 특정 버튼 클릭 동작 수행
+          btnClick();
+        }
+    };
+
     const handlAgreeChange = (event) => {
         const { name, checked } = event.target;
 
@@ -100,7 +107,7 @@ const AuthForm = ({ type }) => {
             .then(response => {
                 // 요청이 성공한 경우의 처리
                 alert("성공적으로 회원가입하였습니다!");
-                navigate('/login');
+                navigate('/');
             })
             .catch(error => {
                 // 요청이 실패한 경우의 처리
@@ -125,7 +132,8 @@ const AuthForm = ({ type }) => {
                 localStorage.setItem('role', role);
                 localStorage.setItem('seq', seq);
 
-                navigate('/');
+                // 메인 페이지로 이동
+                navigate('/home');
             })
             .catch(error => {
                 // 요청이 실패한 경우의 처리
@@ -151,11 +159,11 @@ const AuthForm = ({ type }) => {
                 <div>
                     <ul>
                         <li><span>이메일 *</span></li>
-                        <li><input autoComplete='userEmail' name ="userEmail" placeholder='예) ex@gmail.com' value={emailValue} onChange={handleEmailChange}/></li>
+                        <li><input autoComplete='userEmail' name ="userEmail" placeholder='예) ex@gmail.com' value={emailValue} onChange={handleEmailChange} onKeyDown={handleKeyPress}/></li>
                     </ul>
                     <ul>
                         <li><span>비밀번호 *</span></li>
-                        <li><input autoComplete='userPassword' name="userPassword" placeholder='영문, 숫자, 특수문자 8~16자' type='password' value={pwValue} onChange={handlePWChange}/></li>
+                        <li><input autoComplete='userPassword' name="userPassword" placeholder='영문, 숫자, 특수문자 8~16자' type='password' value={pwValue} onChange={handlePWChange} onKeyDown={handleKeyPress}/></li>
                     </ul>
                     {type === 'register' && (
                         <ul>

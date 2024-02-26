@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SideBar from "./SideBar";
 import Header from './Header';
 import { Button } from "reactstrap";
@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes, Outlet, useNavigate } from 'rea
 
 const Main = () => {
 
+  const [logOut, setLogOut] = useState(false);
   // jwt
   const token = localStorage.getItem('token');
   const seq = localStorage.getItem('seq');
@@ -25,12 +26,22 @@ const Main = () => {
       navigate('/registerBoard');
   };  
 
+  useEffect(() => {
+    if(logOut) {
+      navigate('');
+    }
+  },[logOut]);
+  
   return (
     <main>
-      <div className="pageWrapper d-lg-flex">
+      {token == null && (
+        <div>로그인을 해주십시오!</div>
+      )}
+      {token != null && (
+        <div className="pageWrapper d-lg-flex">
         {/********Sidebar**********/}
         <aside className="sidebarArea shadow" id="sidebarArea">
-          <SideBar/>
+          <SideBar logOut={logOut} setLogOut={setLogOut}/>
         </aside>
         {/********Content Area**********/}
         <div className="contentArea">
@@ -42,6 +53,7 @@ const Main = () => {
           <Button className="registBoard btn-light" onClick={goDetailContent}>+</Button>
         </div>
       </div>
+      )}
     </main>
   );
 };

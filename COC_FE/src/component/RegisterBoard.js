@@ -51,7 +51,7 @@ const RegisterBoard = () => {
 
     // 홈으로 돌아가기
     const goHome = () => {
-        navigate('/');
+        navigate('/home');
     };
 
     const handleSubmit = () => {

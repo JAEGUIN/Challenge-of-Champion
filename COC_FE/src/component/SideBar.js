@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import axios from 'axios';
 
 {/* 사이드바 */}
-const SideBar = () => {
-    const [nickName,setNickName] = useState('임시닉네임');
+const SideBar = (props) => {
+    const [nickName,setNickName] = useState('');
     // jwt
     const token = localStorage.getItem('token');
     const seq = localStorage.getItem('seq');
@@ -14,32 +14,37 @@ const SideBar = () => {
         document.getElementById("sidebarArea").classList.toggle("showSidebar");
     };
 
-     {/* 현재 페이지 정보 */}
+    /* 현재 페이지 정보 */
     let location = useLocation();
+
+    // 페이지이동
+    const navigate = useNavigate();
 
      // 처음에 시작
     const fetchData = async () => {
-        axios.get('member', {
-          seq: seq
-      },
-      {
+      try { // 로그인한 계정 정보 조회
+        const response = await axios.get('/member/' + seq, {
           headers: {
-              Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`
           }
-      })
-      .then(response => {
-          // 요청이 성공한 경우의 처리
-          console.log(response.data);
-      })
-      .catch(error => {
-          // 요청이 실패한 경우의 처리
-          alert('에러 발생:', error);
-      });
+        });
+        setNickName(response.data['nickName']);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
 
+    const logOut = () => {
+
+      if(!window.confirm("로그아웃하시겠습니까?")) return;
+
+      localStorage.removeItem('token');
+      props.setLogOut(true);
+    };
     // 시작 시 호출
     useEffect(() => {
-      //fetchData();
+      //console.log(localStorage.getItem('token'));
+      fetchData();
     },[]);
 
     return (
@@ -92,6 +97,7 @@ const SideBar = () => {
 
             <Link
               className="bottom-button"
+              onClick={logOut}
             > 로그아웃</Link>
         </div>
     );
