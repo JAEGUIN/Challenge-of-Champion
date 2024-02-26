@@ -6,11 +6,13 @@ import com.project.coc.reply.model.PostReplyRequest;
 import com.project.coc.reply.model.SearchReplyRequest;
 import com.project.coc.reply.model.UpdateReplyRequest;
 import com.project.coc.reply.service.ReplyService;
+import com.project.coc.replyHeart.mapper.RHeartMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,11 +22,23 @@ public class ReplyServiceImpl implements ReplyService {
 
     private final ReplyMapper mapper;
 
+    private final RHeartMapper heartMapper;
+
     @Transactional(readOnly = true)
     @Override
-    public List<Reply> selectReplyList(SearchReplyRequest request) {
+    public List<Reply> selectReplyList(SearchReplyRequest request, int userInfo) {
         try {
-            return mapper.selectReplyList(request);
+            List<Reply> result = new ArrayList<>();
+            result = mapper.selectReplyList(request);
+            for(int i=0; i<result.size(); i++){
+                if(userInfo == result.get(i).getUserSeq()){
+                    Long replySeq = result.get(i).getSeq();
+                    if(heartMapper.heartCheck(replySeq, userInfo)>0){
+                        result.get(i).setHeartCheck(true);
+                    }
+                }
+            }
+            return result;
         }catch (Exception e){
             e.printStackTrace();
             return null;

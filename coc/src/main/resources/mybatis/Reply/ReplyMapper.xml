@@ -5,10 +5,12 @@
     <!-- Reply 목록조회(by게시물) -->
     <select id="selectReplyList" resultType="com.project.coc.reply.model.Reply">
         SELECT
+            r.seq,
             r.content,
             r.createdAt,
             r.updatedAt,
             u.nickname,
+            r.userSeq,
             (
                 SELECT count(*)
                 FROM coc.replyHeart rh

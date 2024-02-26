@@ -19,4 +19,14 @@
         DELETE FROM coc.replyHeart
         WHERE seq = #{seq};
     </delete>
+
+    <!-- ReplyHeartCheck 조회 -->
+    <select id="heartCheck" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM coc.replyHeart rh
+        WHERE 1=1
+            AND rh.replySeq = #{replySeq}
+            AND rh.userSeq = #{userInfo};
+    </select>
 </mapper>

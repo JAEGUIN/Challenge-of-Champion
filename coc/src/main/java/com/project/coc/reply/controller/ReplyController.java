@@ -6,6 +6,7 @@ import com.project.coc.reply.model.SearchReplyRequest;
 import com.project.coc.reply.model.UpdateReplyRequest;
 import com.project.coc.reply.service.ReplyService;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,12 @@ public class ReplyController {
 
     @Operation(summary = "게시글당 답글 목록조회", description = "")
     @GetMapping
-    public List<Reply> selectReplyByBoardSeq(SearchReplyRequest request){
-        return service.selectReplyList(request);
+    public List<Reply> selectReplyByBoardSeq(SearchReplyRequest request, HttpServletRequest httpRequest){
+        //HttpSession session = httpRequest.getSession();
+        //String userInfo = (UserInfoDto)session.getAttribute("userInfo");
+        //세션정보 하드코딩
+        int userInfo = 4;
+        return service.selectReplyList(request, userInfo);
     }
 
     @Operation(summary="답글 단건조회", description = "seq*")

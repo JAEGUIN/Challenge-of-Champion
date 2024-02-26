@@ -10,4 +10,6 @@ public interface RHeartMapper {
     void postHeart(PostRHeart request);
 
     void deleteHeart(Long seq);
+
+    int heartCheck(Long replySeq, int userInfo);
 }
