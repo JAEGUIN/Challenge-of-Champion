@@ -42,7 +42,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/member/login", "/", "/member/join","/member/*","/board/*").permitAll()
+                        .requestMatchers("/member/login", "/", "/member/join").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()//swagger 사용을 위함
                         .anyRequest().authenticated()
                 );

@@ -88,8 +88,12 @@ public class MemberController {
 
     @Operation(summary = "유저 상세조회(seq)")
     @GetMapping("/{seq}")
-    public ResponseEntity<MemberResponse> selectMemberById(@PathVariable() Long seq) {
-        return ResponseEntity.ok(memberService.selectMember(seq));
+    public ResponseEntity<?> selectMemberById(@PathVariable() Long seq)  {
+        try {
+            return ResponseEntity.ok(memberService.selectMember(seq));
+        } catch (Exception e) {
+            return ResponseEntity.status(status).body(e.getMessage());
+        }
     }
 
     @Operation(summary = "유저 상세조회(email)")

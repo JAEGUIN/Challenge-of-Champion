@@ -74,8 +74,12 @@ public class MemberServiceImpl implements MemberService {
 
     //유저 상세 조회(seq)
     @Override
-    public MemberResponse selectMember(Long seq) {
-        return memberMapper.selectMember(seq);
+    public MemberResponse selectMember(Long seq) throws Exception {
+        MemberResponse member = memberMapper.selectMember(seq);
+        if (member == null) {
+            throw new Exception("해당 회원은 존재하지 않거나 탈퇴했습니다");
+        }
+        return member;
     }
 
     //유저 상세 조회(email)

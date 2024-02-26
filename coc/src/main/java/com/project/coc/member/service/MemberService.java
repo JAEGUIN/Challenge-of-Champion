@@ -15,7 +15,7 @@ public interface MemberService {
 
     List<MemberResponse> selectAllMembers();
 
-    MemberResponse selectMember(Long seq);
+    MemberResponse selectMember(Long seq) throws Exception;
 
     MemberResponse selectMemberByEmail(String email);
 
