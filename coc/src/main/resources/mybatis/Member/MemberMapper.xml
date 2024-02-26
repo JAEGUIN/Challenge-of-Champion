@@ -24,7 +24,7 @@
             u.profileCont,
             u.role
         FROM coc.user u
-        WHERE seq = #{seq};
+        WHERE seq = #{seq}
             AND u.delYn = 'N'
     </select>
 

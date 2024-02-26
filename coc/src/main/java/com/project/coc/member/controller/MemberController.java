@@ -1,6 +1,5 @@
 package com.project.coc.member.controller;
 
-import com.project.coc.jwt.JwtFilter;
 import com.project.coc.member.model.LoginMemberRequest;
 import com.project.coc.member.model.MemberResponse;
 import com.project.coc.member.model.PostMemberRequest;
@@ -9,17 +8,12 @@ import com.project.coc.member.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 
 @RestController
@@ -99,7 +93,7 @@ public class MemberController {
     }
 
     @Operation(summary = "유저 상세조회(email)")
-    @GetMapping("/{email}")
+    @GetMapping("/email/{email}")
     public ResponseEntity<MemberResponse> selectMemberByEmail(@PathVariable() String email) {
         return ResponseEntity.ok(memberService.selectMemberByEmail(email));
     }
