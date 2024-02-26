@@ -19,4 +19,14 @@
         DELETE FROM coc.boardHeart
         WHERE seq = #{seq};
     </delete>
+
+    <!-- BoardHeartCheck 조회 -->
+    <select id="heartCheck" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM coc.boardHeart bh
+        WHERE 1=1
+            AND bh.boardSeq = #{boardSeq}
+            AND bh.userSeq = #{userInfo};
+    </select>
 </mapper>

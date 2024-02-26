@@ -8,7 +8,7 @@ import com.project.coc.board.model.UpdateBoardRequest;
 import java.util.List;
 
 public interface BoardService {
-    List<Board> selectBoardList(SearchBoardRequest request);
+    List<Board> selectBoardList(SearchBoardRequest request, int userInfo);
 
     Board selectBoard(Long seq);
 

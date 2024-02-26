@@ -3,6 +3,7 @@ package com.project.coc.board.model;
 import com.project.coc.common.model.CommonModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @ToString
@@ -34,10 +35,23 @@ public class Board extends CommonModel {
     private String nickname;
 
     /**
+     * 작성자 번호
+     */
+    @Schema(defaultValue = "작성자 번호")
+    private int userSeq;
+
+    /**
      * 삭제 여부
      */
     @Schema(defaultValue = "삭제여부")
     private String delYn;
+
+    /**
+     * 본인 하트 체크
+     */
+    @Setter
+    @Schema(defaultValue = "본인 하트 체크")
+    private boolean heartCheck;
 
     /**
      * 게시판 하트 수

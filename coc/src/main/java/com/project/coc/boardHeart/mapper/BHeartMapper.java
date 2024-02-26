@@ -10,4 +10,6 @@ public interface BHeartMapper {
     void postHeart(PostBHeart request);
 
     void deleteHeart(Long seq);
+
+    int heartCheck(Long boardSeq, int userInfo);
 }

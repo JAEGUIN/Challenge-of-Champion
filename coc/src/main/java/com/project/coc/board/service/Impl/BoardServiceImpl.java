@@ -6,11 +6,13 @@ import com.project.coc.board.model.PostBoardRequest;
 import com.project.coc.board.model.SearchBoardRequest;
 import com.project.coc.board.model.UpdateBoardRequest;
 import com.project.coc.board.service.BoardService;
+import com.project.coc.boardHeart.mapper.BHeartMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,11 +22,23 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardMapper mapper;
 
+    private final BHeartMapper heartMapper;
+
     @Transactional(readOnly = true)
     @Override
-    public List<Board> selectBoardList(SearchBoardRequest request) {
+    public List<Board> selectBoardList(SearchBoardRequest request, int userInfo) {
         try {
-            return mapper.selectBoardList(request);
+            List<Board> result = new ArrayList<>();
+            result = mapper.selectBoardList(request);
+            for(int i=1; i<result.size(); i++){
+                if(userInfo == result.get(i).getUserSeq()){
+                    Long boardSeq = result.get(i).getSeq();
+                    if(heartMapper.heartCheck(boardSeq, userInfo)>0){
+                        result.get(i).setHeartCheck(true);
+                    }
+                }
+            }
+            return result;
         }catch (Exception e){
             e.printStackTrace();
             return null;
