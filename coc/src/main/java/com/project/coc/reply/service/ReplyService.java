@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ReplyService {
 
-    List<Reply> selectReplyList(SearchReplyRequest request, int userInfo);
+    List<Reply> selectReplyList(SearchReplyRequest request);
     Reply selectReply(Long seq);
 
     void regiReply(PostReplyRequest request);

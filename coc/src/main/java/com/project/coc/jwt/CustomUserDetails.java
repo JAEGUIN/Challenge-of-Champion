@@ -16,6 +16,10 @@ public class CustomUserDetails implements UserDetails {
         this.member = member;
     }
 
+    public Long getSeq(){
+        return member.getSeq();
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(String.valueOf(member.getRole())));

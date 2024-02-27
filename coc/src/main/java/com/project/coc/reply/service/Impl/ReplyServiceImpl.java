@@ -1,5 +1,6 @@
 package com.project.coc.reply.service.Impl;
 
+import com.project.coc.jwt.CustomUserDetails;
 import com.project.coc.reply.mapper.ReplyMapper;
 import com.project.coc.reply.model.Reply;
 import com.project.coc.reply.model.PostReplyRequest;
@@ -9,6 +10,8 @@ import com.project.coc.reply.service.ReplyService;
 import com.project.coc.replyHeart.mapper.RHeartMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,10 +27,18 @@ public class ReplyServiceImpl implements ReplyService {
 
     private final RHeartMapper heartMapper;
 
+    //jwt에 담긴 userSeq
+    private long getUserSeqFromAuthentication() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ((CustomUserDetails)authentication.getPrincipal()).getSeq();
+    }
+
     @Transactional(readOnly = true)
     @Override
-    public List<Reply> selectReplyList(SearchReplyRequest request, int userInfo) {
+    public List<Reply> selectReplyList(SearchReplyRequest request) {
         try {
+            long userInfo = getUserSeqFromAuthentication();
+
             List<Reply> result = new ArrayList<>();
             result = mapper.selectReplyList(request);
             for(int i=0; i<result.size(); i++){

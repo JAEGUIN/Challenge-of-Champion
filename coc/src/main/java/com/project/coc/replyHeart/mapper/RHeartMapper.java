@@ -11,5 +11,5 @@ public interface RHeartMapper {
 
     void deleteHeart(Long seq);
 
-    int heartCheck(Long replySeq, int userInfo);
+    int heartCheck(Long replySeq, Long userInfo);
 }

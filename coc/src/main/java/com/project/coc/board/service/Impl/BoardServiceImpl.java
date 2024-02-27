@@ -7,8 +7,11 @@ import com.project.coc.board.model.SearchBoardRequest;
 import com.project.coc.board.model.UpdateBoardRequest;
 import com.project.coc.board.service.BoardService;
 import com.project.coc.boardHeart.mapper.BHeartMapper;
+import com.project.coc.jwt.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,13 +27,21 @@ public class BoardServiceImpl implements BoardService {
 
     private final BHeartMapper heartMapper;
 
+    //jwt에 담긴 userSeq
+    private long getUserSeqFromAuthentication() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ((CustomUserDetails)authentication.getPrincipal()).getSeq();
+    }
+
     @Transactional(readOnly = true)
     @Override
-    public List<Board> selectBoardList(SearchBoardRequest request, int userInfo) {
+    public List<Board> selectBoardList(SearchBoardRequest request) {
         try {
+            long userInfo = getUserSeqFromAuthentication();
+
             List<Board> result = new ArrayList<>();
             result = mapper.selectBoardList(request);
-            for(int i=1; i<result.size(); i++){
+            for(int i=0; i<result.size(); i++){
                 if(userInfo == result.get(i).getUserSeq()){
                     Long boardSeq = result.get(i).getSeq();
                     if(heartMapper.heartCheck(boardSeq, userInfo)>0){
@@ -47,8 +58,10 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional(readOnly = true)
     @Override
-    public Board selectBoard(Long seq, int userInfo) {
+    public Board selectBoard(Long seq) {
         try {
+            long userInfo = getUserSeqFromAuthentication();
+
             Board detail = new Board();
             detail = mapper.selectBoard(seq);
             if(userInfo == detail.getUserSeq()){
@@ -58,7 +71,6 @@ public class BoardServiceImpl implements BoardService {
                 }
             }
             return detail;
-//            return mapper.selectBoard(seq);
         }catch (Exception e){
             e.printStackTrace();
             return null;

@@ -11,5 +11,5 @@ public interface BHeartMapper {
 
     void deleteHeart(Long seq);
 
-    int heartCheck(Long boardSeq, int userInfo);
+    int heartCheck(Long boardSeq, Long userInfo);
 }
