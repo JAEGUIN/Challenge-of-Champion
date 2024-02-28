@@ -26,6 +26,7 @@ const Main = () => {
       navigate('/registerBoard');
   };  
 
+  // logout일 시 
   useEffect(() => {
     if(logOut) {
       navigate('');

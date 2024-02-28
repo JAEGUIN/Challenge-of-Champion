@@ -60,7 +60,7 @@ const SideBar = (props) => {
 
             {/* 프로필 부분 */}
             <div className="d-flex align-items-center">
-                <img src="/img/sample.jpg" className="profileImg"/>
+                <img src="/img/sample.jpg" className="profileImg" />
                 <div className="profileDesc">
                     <div className="profileName">{nickName}</div>
                     <div className="d-flex">

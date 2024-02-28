@@ -6,6 +6,7 @@ const Reply = (props) => {
     const [replyDate, setReplyDate] = useState('');
     const [heartCnt, setHeartCnt] = useState(0);
 
+    // 시작 시 호출
     useEffect(() => {
         setNickName(props.data.nickname);
         setReplyContent(props.data.content);
