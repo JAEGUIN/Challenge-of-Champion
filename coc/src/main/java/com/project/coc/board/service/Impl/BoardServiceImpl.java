@@ -42,12 +42,21 @@ public class BoardServiceImpl implements BoardService {
             List<Board> result = new ArrayList<>();
             result = mapper.selectBoardList(request);
             for(int i=0; i<result.size(); i++){
+
+                Long boardSeq = result.get(i).getSeq();
+                if(heartMapper.heartCheck(boardSeq, userInfo)>0){
+                    result.get(i).setHeartCheck(true);
+                }
+
+
+                /*
+                System.out.println(result.get(i).getUserSeq());
                 if(userInfo == result.get(i).getUserSeq()){
                     Long boardSeq = result.get(i).getSeq();
                     if(heartMapper.heartCheck(boardSeq, userInfo)>0){
                         result.get(i).setHeartCheck(true);
                     }
-                }
+                }*/
             }
             return result;
         }catch (Exception e){
