@@ -135,6 +135,9 @@
 .detailLike {
   flex: 0 0 30%;
 }
+.detailLike:hover {
+  cursor: pointer;
+}
 
 .detailComment {
   flex: 0 0 40%;
@@ -161,6 +164,9 @@
 
 .replyLike {
   margin-left: 0.5rem;
+}
+.replyLike:hover {
+  cursor: pointer;
 }
 
 .line {
@@ -244,6 +250,9 @@
 
 .heartCnt {
   margin-left: 0.5rem;
+}
+.heartCnt:hover {
+  cursor:pointer;
 }
 
 .replyCnt {

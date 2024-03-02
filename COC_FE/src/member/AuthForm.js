@@ -20,7 +20,6 @@ const AuthForm = ({ type }) => {
     const [agreements, setAgreements] = useState({
         termsAgreed: false,
         presnalInfoAgreed: false,
-        provisionAgreed: false,
         marketingAgreed: false,
         ageAgreed: false,
     });
@@ -57,7 +56,7 @@ const AuthForm = ({ type }) => {
 
     const handlAgreeChange = (event) => {
         const { name, checked } = event.target;
-
+        
         setAgreements((prevAgreements) => ({...prevAgreements, [name]: checked}));
 
         const allChecked = Object.values({...agreements, [name]: checked}).every((value) => value === true);
@@ -96,6 +95,8 @@ const AuthForm = ({ type }) => {
                 return;
             }
 
+            if(!window.confirm("가입하시겠습니까?")) return;
+            
             axios.post('member/join', {
                 email: emailValue,
                 password: pwValue,
@@ -226,7 +227,7 @@ const AuthForm = ({ type }) => {
                             {type === 'login' ? (
                                 <Link to="/register">회원가입</Link>
                             ) : (
-                                <Link to="/login">로그인</Link>
+                                <Link to="/">로그인</Link>
                             )}
                         </li>
                     </ul>

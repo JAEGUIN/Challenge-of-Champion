@@ -11,6 +11,7 @@ const DetailContent = () => {
     const [replyData, setReplyData] = useState([]); // 답글
     const [updatedAt, SetUpdatedAt] = useState(''); // 업데이트 날짜
     const [nickName, setNickName] = useState(''); // 닉네임
+    const [heart,setHeart] = useState(false); 
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ const DetailContent = () => {
     const token = localStorage.getItem('token');
 
     const goProfil = () => {
-        navigate('/userDetail');
+        navigate('/userDetail', {state:{userSeq : location.state.boardData.data.userSeq} });
     };
 
     // 처음에 시작
@@ -38,6 +39,44 @@ const DetailContent = () => {
         }
     };
 
+    // heart누름
+    const clickHeart = async () => {
+        // 이미 좋아요가 눌려졌을 시
+        if(heart) {
+            try {
+                const response = await axios.post('/boardHeart/delete', {
+                    boardSeq: location.state.boardData.data.seq,
+                    userSeq: localStorage.getItem('seq')
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setHeartCnt(heartCnt-1);
+            } catch (error) {
+            console.error('Error fetching data:', error);
+            }
+        }
+        else { // 좋아요가 안 눌려졌을 시
+            try {
+                const response = await axios.post('/boardHeart/post', {
+                    boardSeq: location.state.boardData.data.seq,
+                    userSeq: localStorage.getItem('seq')
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setHeartCnt(heartCnt+1);
+                } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+        setHeart(!heart);
+    };
+
     // 날짜를 2024-01-01 형식으로
     function formatDate(dateString) {
         const date = new Date(dateString);
@@ -55,6 +94,7 @@ const DetailContent = () => {
         setContentData(location.state.boardData.data.content);
         setContentView(location.state.boardData.data.count);
         setHeartCnt(location.state.boardData.data.heart);
+        setHeart(location.state.boardData.data.heartCheck);
         fetchData();
     }, []);
 
@@ -73,8 +113,10 @@ const DetailContent = () => {
             </div>
 
             <div className="d-flex detailCnt">
-                <div class="float-start detailLike">
-                    ❤ {heartCnt}
+                <div class="float-start detailLike" onClick={clickHeart}>
+                    {heart && ("❤ ")}
+                    {!heart && ("🤍 ")}
+                    {heartCnt}
                 </div >
                 <div class="float-none detailComment">
                     댓글 : {replyData.length}

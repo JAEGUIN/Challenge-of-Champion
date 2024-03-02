@@ -9,7 +9,7 @@ const Home = () => {
     const [pageNum, setPageNum] = useState(0);
     const [getData, setGetData] = useState(true);
     const token = localStorage.getItem('token');
-
+    
     // 처음에 시작
     const fetchData = async () => {
         try {
@@ -54,8 +54,6 @@ const Home = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, [handleScroll]) ;
-
-    
 
     return (
         <div>

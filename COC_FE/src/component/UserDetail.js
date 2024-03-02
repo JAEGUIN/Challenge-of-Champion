@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "reactstrap";
 import GuestBook from "./GuestBook";
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const UserDetail = (props) => {
     const [nickName, setNickName] = useState('');
     const [profileCont, SetProfilCont] = useState('');
+    const location = useLocation();
     // jwt
     const token = localStorage.getItem('token');
-    //const seq = props.seq;
-    const seq = 10;
-
+    const seq = location.state.userSeq;
+    
      // 처음에 시작
      const fetchData = async () => {
         try { // 로그인한 계정 정보 조회
