@@ -17,7 +17,9 @@
     <!-- ReplyHeart 삭제 -->
     <delete id="deleteHeart">
         DELETE FROM coc.replyHeart
-        WHERE seq = #{seq};
+        WHERE 1=1
+            AND replySeq = #{replySeq}
+            AND userSeq = #{userSeq}
     </delete>
 
     <!-- ReplyHeartCheck 조회 -->

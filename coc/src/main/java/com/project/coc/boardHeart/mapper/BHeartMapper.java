@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface BHeartMapper {
     void postHeart(PostBHeart request);
 
-    void deleteHeart(Long seq);
+    void deleteHeart(PostBHeart request);
 
     int heartCheck(Long boardSeq, Long userInfo);
 }

@@ -20,9 +20,9 @@ public class RHeartController {
     }
 
     @Operation(summary = "답변 하트 삭제")
-    @DeleteMapping("/{seq}")
-    public void deleteHeart(@PathVariable Long seq){
-        service.deleteHeart(seq);
+    @PostMapping("/delete")
+    public void deleteHeart(@RequestBody PostRHeart request){
+        service.deleteHeart(request);
     }
 
 }

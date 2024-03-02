@@ -42,11 +42,9 @@ public class ReplyServiceImpl implements ReplyService {
             List<Reply> result = new ArrayList<>();
             result = mapper.selectReplyList(request);
             for(int i=0; i<result.size(); i++){
-                if(userInfo == result.get(i).getUserSeq()){
-                    Long replySeq = result.get(i).getSeq();
-                    if(heartMapper.heartCheck(replySeq, userInfo)>0){
-                        result.get(i).setHeartCheck(true);
-                    }
+                Long replySeq = result.get(i).getSeq();
+                if(heartMapper.heartCheck(replySeq, userInfo)>0){
+                    result.get(i).setHeartCheck(true);
                 }
             }
             return result;

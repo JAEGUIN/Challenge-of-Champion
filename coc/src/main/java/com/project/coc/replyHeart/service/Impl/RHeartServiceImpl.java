@@ -27,9 +27,9 @@ public class RHeartServiceImpl implements RHeartService {
 
     @Transactional
     @Override
-    public void deleteHeart(Long seq) {
+    public void deleteHeart(PostRHeart request) {
         try {
-            mapper.deleteHeart(seq);
+            mapper.deleteHeart(request);
         }catch (Exception e){
             e.printStackTrace();
         }

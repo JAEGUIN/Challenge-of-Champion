@@ -16,8 +16,11 @@
 
     <!-- BoardHeart 삭제 -->
     <delete id="deleteHeart">
+
         DELETE FROM coc.boardHeart
-        WHERE seq = #{seq};
+        WHERE 1=1
+            AND boardSeq = #{boardSeq}
+            AND userSeq = #{userSeq};
     </delete>
 
     <!-- BoardHeartCheck 조회 -->

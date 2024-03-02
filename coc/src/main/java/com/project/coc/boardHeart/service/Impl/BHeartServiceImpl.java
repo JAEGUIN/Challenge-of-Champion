@@ -27,9 +27,9 @@ public class BHeartServiceImpl implements BHeartService {
 
     @Transactional
     @Override
-    public void deleteHeart(Long seq) {
+    public void deleteHeart(PostBHeart request) {
         try{
-            mapper.deleteHeart(seq);
+            mapper.deleteHeart(request);
         }catch (Exception e){
             e.printStackTrace();
         }
