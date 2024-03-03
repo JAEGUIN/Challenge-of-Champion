@@ -47,16 +47,6 @@ public class BoardServiceImpl implements BoardService {
                 if(heartMapper.heartCheck(boardSeq, userInfo)>0){
                     result.get(i).setHeartCheck(true);
                 }
-
-
-                /*
-                System.out.println(result.get(i).getUserSeq());
-                if(userInfo == result.get(i).getUserSeq()){
-                    Long boardSeq = result.get(i).getSeq();
-                    if(heartMapper.heartCheck(boardSeq, userInfo)>0){
-                        result.get(i).setHeartCheck(true);
-                    }
-                }*/
             }
             return result;
         }catch (Exception e){
@@ -73,11 +63,9 @@ public class BoardServiceImpl implements BoardService {
 
             Board detail = new Board();
             detail = mapper.selectBoard(seq);
-            if(userInfo == detail.getUserSeq()){
-                Long boardSeq = detail.getSeq();
-                if(heartMapper.heartCheck(boardSeq, userInfo)>0){
-                    detail.setHeartCheck(true);
-                }
+            Long boardSeq = detail.getSeq();
+            if(heartMapper.heartCheck(boardSeq, userInfo)>0){
+                detail.setHeartCheck(true);
             }
             return detail;
         }catch (Exception e){
