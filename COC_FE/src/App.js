@@ -9,6 +9,8 @@ import DetailContent from './component/DetailContent';
 import Home from './component/Home';
 import RegisterBoard from './component/RegisterBoard';
 import UserDetail from './component/UserDetail';
+import UserBoard from './component/UserBoard';
+import UserGuestBook from './component/UserGuestBook';
 
 const App = () => {
 
@@ -22,7 +24,10 @@ const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/detailContent" element={<DetailContent />} />
             <Route path="/registerBoard" element={<RegisterBoard />} />
-            <Route path="/userDetail" element={<UserDetail />} />
+            <Route element={<UserDetail />} >
+              <Route path="/userDetail" element={<UserBoard />}/>
+              <Route path="/userGuestBook" element={<UserGuestBook />}/>
+            </Route>
           </Route>
         </Routes>
       </Router>

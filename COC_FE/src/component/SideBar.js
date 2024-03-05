@@ -34,6 +34,10 @@ const SideBar = (props) => {
       }
     };
 
+    const goProfil = () => {
+      navigate('/userDetail', {state:{userSeq : localStorage.getItem('seq')} });
+    };
+
     const logOut = () => {
 
       if(!window.confirm("로그아웃하시겠습니까?")) return;
@@ -43,7 +47,6 @@ const SideBar = (props) => {
     };
     // 시작 시 호출
     useEffect(() => {
-      //console.log(localStorage.getItem('token'));
       fetchData();
     },[]);
 
@@ -60,7 +63,7 @@ const SideBar = (props) => {
 
             {/* 프로필 부분 */}
             <div className="d-flex align-items-center">
-                <img src="/img/sample.jpg" className="profileImg" />
+                <img src="/img/sample.jpg" className="profileImg" onClick={goProfil}/>
                 <div className="profileDesc">
                     <div className="profileName">{nickName}</div>
                     <div className="d-flex">

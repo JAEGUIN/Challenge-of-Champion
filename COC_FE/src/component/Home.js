@@ -58,9 +58,9 @@ const Home = () => {
     return (
         <div>
             <PopularArena/>
-            <div class="mainContents">
+            <div className="mainContents">
                 {contentData.map((item) => (
-                    <MainContents data={item}/>
+                    <MainContents key={item.seq} data={item}/>
                 ))}
             </div>
         </div>
