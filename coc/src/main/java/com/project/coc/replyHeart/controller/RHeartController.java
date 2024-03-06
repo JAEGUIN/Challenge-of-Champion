@@ -20,7 +20,7 @@ public class RHeartController {
     }
 
     @Operation(summary = "답변 하트 삭제")
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     public void deleteHeart(@RequestBody PostRHeart request){
         service.deleteHeart(request);
     }
