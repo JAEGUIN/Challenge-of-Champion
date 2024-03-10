@@ -16,11 +16,11 @@ const Reply = (props) => {
         // 이미 좋아요가 눌려졌을 시
         if(heart) {
             try {
-                const response = await axios.post('/replyHeart/delete', {
-                    replySeq: props.data.seq,
-                    userSeq: localStorage.getItem('seq')
-                },
-                {
+                const response = await axios.delete('/replyHeart/delete', {
+                    data: {
+                        replySeq: props.data.seq,
+                        userSeq: localStorage.getItem('seq')
+                    },
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

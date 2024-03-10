@@ -19,7 +19,7 @@ const DetailContent = () => {
     const token = localStorage.getItem('token');
 
     const goProfil = () => {
-        navigate('/userDetail', {state:{userSeq : location.state.boardData.data.userSeq} });
+        navigate('/userDetail', {state:{userSeq : location.state.boardData.userSeq} });
     };
 
     // 처음에 시작
@@ -30,7 +30,7 @@ const DetailContent = () => {
                 Authorization: `Bearer ${token}`
             },
             params: {
-                boardSeq: location.state.boardData.data.seq
+                boardSeq: location.state.boardData.seq
             }
           });
           setReplyData(response.data);
@@ -44,11 +44,11 @@ const DetailContent = () => {
         // 이미 좋아요가 눌려졌을 시
         if(heart) {
             try {
-                const response = await axios.post('/boardHeart/delete', {
-                    boardSeq: location.state.boardData.data.seq,
+                const response = await axios.delete('/boardHeart/delete', {
+                    data: {
+                    boardSeq: location.state.boardData.seq,
                     userSeq: localStorage.getItem('seq')
-                },
-                {
+                    },
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -61,7 +61,7 @@ const DetailContent = () => {
         else { // 좋아요가 안 눌려졌을 시
             try {
                 const response = await axios.post('/boardHeart/post', {
-                    boardSeq: location.state.boardData.data.seq,
+                    boardSeq: location.state.boardData.seq,
                     userSeq: localStorage.getItem('seq')
                 },
                 {
@@ -89,12 +89,12 @@ const DetailContent = () => {
 
 
     useEffect(() => {
-        setNickName(location.state.boardData.data.nickname);
-        SetUpdatedAt(formatDate(location.state.boardData.data.updatedAt));
-        setContentData(location.state.boardData.data.content);
-        setContentView(location.state.boardData.data.count);
-        setHeartCnt(location.state.boardData.data.heart);
-        setHeart(location.state.boardData.data.heartCheck);
+        setNickName(location.state.boardData.nickname);
+        SetUpdatedAt(formatDate(location.state.boardData.updatedAt));
+        setContentData(location.state.boardData.content);
+        setContentView(location.state.boardData.count);
+        setHeartCnt(location.state.boardData.heart);
+        setHeart(location.state.boardData.heartCheck);
         fetchData();
     }, []);
 
@@ -135,7 +135,7 @@ const DetailContent = () => {
                     ))
                 )}
             </div>
-            <RegisterReply boardSeq={location.state.boardData.data.seq}/>
+            <RegisterReply boardSeq={location.state.boardData.seq}/>
         </div>
     );
 };

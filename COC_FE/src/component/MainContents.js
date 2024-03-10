@@ -18,7 +18,7 @@ const MainContents = (props) => {
     // 게시판 상세로 이동한다
     const goDetailContent = () => {
         // 특정 div를 클릭하면.....
-        navigate('/detailContent', {state:{boardData : props} });
+        navigate('/detailContent', {state:{boardData : props.data} });
     };
 
     // 상세 프로필로 이동한다
@@ -28,19 +28,21 @@ const MainContents = (props) => {
 
     // heart누름
     const clickHeart = async () => {
+        let updatedItem = { ...props.data }; // 변경된 데이터를 담을 새로운 객체 생성
         // 이미 좋아요가 눌려졌을 시
         if(heart) {
             try {
-                const response = await axios.post('/boardHeart/delete', {
-                    boardSeq: props.data.seq,
-                    userSeq: localStorage.getItem('seq')
-                },
-                {
+                const response = await axios.delete('/boardHeart/delete', {
+                    data: {
+                        boardSeq: props.data.seq,
+                        userSeq: localStorage.getItem('seq')
+                    },
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
                 setHeartCnt(heartCnt-1);
+                updatedItem.heart = heartCnt-1; // 변경된 heartCnt 설정
             } catch (error) {
             console.error('Error fetching data:', error);
             }
@@ -57,11 +59,17 @@ const MainContents = (props) => {
                     }
                 })
                 setHeartCnt(heartCnt+1);
+                updatedItem.heart = heartCnt+1; // 변경된 heartCnt 설정
                 } catch (error) {
                 console.error('Error fetching data:', error);
             }
         }
         setHeart(!heart);
+        // 변경된 데이터를 업데이트
+        updatedItem.heartCheck = !heart; // 변경된 heart 상태로 설정
+        
+       
+        props.updateData(updatedItem);
     };
 
     // 시작 시 호출

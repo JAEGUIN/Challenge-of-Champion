@@ -9,12 +9,17 @@ const Home = () => {
     const [pageNum, setPageNum] = useState(0);
     const [getData, setGetData] = useState(true);
     const token = localStorage.getItem('token');
-    
+
+    const handleDataUpdate = (updatedItem) => {
+      // contentData 배열에서 해당 항목을 찾아 데이터를 업데이트합니다.
+      setContentData(contentData.map(item => item.seq === updatedItem.seq ? updatedItem : item));
+    };
+
     // 처음에 시작
     const fetchData = async () => {
         try {
           const response = await axios.get('/board', {
-            headers: {
+             headers: {
               Authorization: `Bearer ${token}`
             },
             params: {
@@ -58,9 +63,9 @@ const Home = () => {
     return (
         <div>
             <PopularArena/>
-            <div className="mainContents">
+            <div class="mainContents">
                 {contentData.map((item) => (
-                    <MainContents key={item.seq} data={item}/>
+                    <MainContents key={item.id} data={item} updateData={handleDataUpdate}/>
                 ))}
             </div>
         </div>
