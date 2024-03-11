@@ -16,11 +16,10 @@
 
     <!-- BoardHeart 삭제 -->
     <delete id="deleteHeart">
-
         DELETE FROM coc.boardHeart
         WHERE 1=1
             AND boardSeq = #{boardSeq}
-            AND userSeq = #{userSeq};
+            AND userSeq = #{userSeq}
     </delete>
 
     <!-- BoardHeartCheck 조회 -->
@@ -30,6 +29,6 @@
         FROM coc.boardHeart bh
         WHERE 1=1
             AND bh.boardSeq = #{boardSeq}
-            AND bh.userSeq = #{userInfo};
+            AND bh.userSeq = #{userInfo}
     </select>
 </mapper>

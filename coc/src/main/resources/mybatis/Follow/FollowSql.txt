@@ -1,0 +1,5 @@
+CREATE TABLE coc.follow (
+    seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+    userSeq VARCHAR(20),
+    followSeq VARCHAR(20)
+);

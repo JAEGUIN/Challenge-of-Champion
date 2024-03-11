@@ -10,7 +10,7 @@
         ,   userSeq         /* 유저번호 */
         )VALUES(
             #{replySeq}     /* 답글번호 */
-        ,    #{userSeq}      /* 유저번호 */
+        ,   #{userSeq}      /* 유저번호 */
         )
     </insert>
 
@@ -29,6 +29,6 @@
         FROM coc.replyHeart rh
         WHERE 1=1
             AND rh.replySeq = #{replySeq}
-            AND rh.userSeq = #{userInfo};
+            AND rh.userSeq = #{userInfo}
     </select>
 </mapper>
