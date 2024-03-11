@@ -5,7 +5,7 @@
     <!-- 팔로우 카운트 -->
     <select id="followCount" resultType="com.project.coc.follow.model.Follow">
         SELECT
-        COUNT(*) as followCount
+            COUNT(*) as followCount
         FROM coc.follow f
         WHERE followSeq = #{followSeq};
     </select>
@@ -13,20 +13,20 @@
     <!-- 팔로우 리스트 -->
     <select id="followList" resultType="com.project.coc.follow.model.FollowList">
         SELECT
-        u.nickName,
-        u.email
+            u.nickName,
+            u.email
         FROM coc.follow f
         left join
-        coc.user u
+            coc.user u
         on
-        f.userSeq = u.seq
+            f.userSeq = u.seq
         where followSeq = #{followSeq};
     </select>
 
     <!-- 팔로잉 카운트 -->
     <select id="followingCount" resultType="com.project.coc.follow.model.Following">
         SELECT
-        COUNT(*) as followingCount
+            COUNT(*) as followingCount
         FROM coc.follow f
         WHERE userSeq = #{userSeq};
     </select>
@@ -34,34 +34,34 @@
     <!-- 팔로잉 리스트 -->
     <select id="followingList" resultType="com.project.coc.follow.model.FollowingList">
         SELECT
-        u.nickName,
-        u.email
+            u.nickName,
+            u.email
         FROM coc.follow f
         left join
-        coc.user u
+            coc.user u
         on
-        f.userSeq = u.seq
+            f.userSeq = u.seq
         where userSeq = #{userSeq};
     </select>
 
     <!-- 팔로우 체크 -->
     <select id="followCheck" resultType="java.lang.Integer">
         SELECT
-        COUNT(*)
+            COUNT(*)
         FROM coc.follow f
         WHERE 1=1
-        AND f.userSeq = #{userSeq}
-        AND f.followSeq = #{followSeq}
+            AND f.userSeq = #{userSeq}
+            AND f.followSeq = #{followSeq}
     </select>
 
     <!-- 팔로우 등록 -->
     <insert id="postFollow">
         INSERT INTO coc.follow
         (
-        userSeq     /* 유저번호 */
+            userSeq     /* 유저번호 */
         ,   followSeq   /* 팔로워할 유저번호 */
         )VALUES(
-        #{userSeq}     /* 유저번호 */
+            #{userSeq}     /* 유저번호 */
         ,   #{followSeq}   /* 팔로워할 유저번호 */
         )
     </insert>
@@ -70,7 +70,7 @@
     <delete id="deleteFollow">
         DELETE FROM coc.follow
         WHERE 1=1
-        AND userSeq = #{userSeq}
-        AND followSeq = #{followSeq}
+            AND userSeq = #{userSeq}
+            AND followSeq = #{followSeq}
     </delete>
 </mapper>
