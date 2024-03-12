@@ -19,4 +19,5 @@ public class FollowList {
      */
     @Schema(defaultValue = "팔로잉 이메일")
     private String email;
+
 }
