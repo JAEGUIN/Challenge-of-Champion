@@ -113,15 +113,15 @@ const DetailContent = () => {
             </div>
 
             <div className="d-flex detailCnt">
-                <div class="float-start detailLike" onClick={clickHeart}>
+                <div className="float-start detailLike" onClick={clickHeart}>
                     {heart && ("❤ ")}
                     {!heart && ("🤍 ")}
                     {heartCnt}
                 </div >
-                <div class="float-none detailComment">
+                <div className="float-none detailComment">
                     댓글 : {replyData.length}
                 </div>
-                <div class="float-end detailView">
+                <div className="float-end detailView">
                     조회 수 : {contentView}
                 </div>
             </div>
@@ -131,7 +131,7 @@ const DetailContent = () => {
                     <p> 답글이 없습니다. </p>
                 ): (
                     replyData.map((item) => (
-                        <Reply data={item}/>
+                        <Reply key={item.seq} data={item}/>
                     ))
                 )}
             </div>

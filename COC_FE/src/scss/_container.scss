@@ -259,3 +259,39 @@
 
   margin-left: 2rem;
 }
+
+.modal-overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+
+.modal_s {
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%;
+  height: 50%;
+}
+
+.close-btn {
+  margin-left: 95%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.userSimple {
+  margin: 5px;
+}

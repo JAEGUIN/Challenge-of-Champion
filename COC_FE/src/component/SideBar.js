@@ -6,6 +6,9 @@ import axios from 'axios';
 {/* 사이드바 */}
 const SideBar = (props) => {
     const [nickName,setNickName] = useState('');
+    const [following, setFollowing] = useState(0);
+    const [follower, setFollower] = useState(0);
+
     // jwt
     const token = localStorage.getItem('token');
     const seq = localStorage.getItem('seq');
@@ -20,9 +23,9 @@ const SideBar = (props) => {
     // 페이지이동
     const navigate = useNavigate();
 
-     // 처음에 시작
-    const fetchData = async () => {
-      try { // 로그인한 계정 정보 조회
+    // 로그인한 계정 정보 조회
+    const getUserInfo = async () => {
+      try { 
         const response = await axios.get('/member/' + seq, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -34,10 +37,40 @@ const SideBar = (props) => {
       }
     };
 
+    // 나를 팔로우 하는 인원 수 
+    const getFollower = async() => {
+      try { 
+        const response = await axios.get('/follow/' + seq, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setFollower(response.data.followCount);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    
+    // 내가 팔로잉 하는 인원 수
+    const getFollowing = async() => {
+      try { 
+        const response = await axios.get('/follow/ing/' + seq, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setFollowing(response.data.followingCount);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    // 내 프로필 상세
     const goProfil = () => {
       navigate('/userDetail', {state:{userSeq : localStorage.getItem('seq')} });
     };
 
+    // 로그아웃
     const logOut = () => {
 
       if(!window.confirm("로그아웃하시겠습니까?")) return;
@@ -45,9 +78,12 @@ const SideBar = (props) => {
       localStorage.removeItem('token');
       props.setLogOut(true);
     };
+
     // 시작 시 호출
     useEffect(() => {
-      fetchData();
+      getUserInfo();
+      getFollower();
+      getFollowing();
     },[]);
 
     return (
@@ -67,8 +103,8 @@ const SideBar = (props) => {
                 <div className="profileDesc">
                     <div className="profileName">{nickName}</div>
                     <div className="d-flex">
-                        <div className="followCount">팔로워 <br/> 5000</div>
-                        <div className="followCount">팔로잉 <br/> 5000</div>
+                        <div className="followCount">팔로워 <br/> {follower}</div>
+                        <div className="followCount">팔로잉 <br/> {following}</div>
                     </div>
                 </div>
             </div>
