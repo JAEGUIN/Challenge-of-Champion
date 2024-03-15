@@ -1,0 +1,64 @@
+h3 {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 30px;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+li {
+    margin:10px 0px;
+}
+
+li > span {
+    font-size: 18px;
+}
+
+input {
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid;
+    padding-bottom: 0.4rem;
+    outline: none;
+    width:100%;
+    &:focus {
+        color: #adb5bd;
+        border-bottom: 1px solid;
+    }
+}
+
+.agreeCheck {
+    width: 1rem !important;
+}
+
+a {
+    color: #adb5bd;
+    text-decoration: underline;
+    &:hover {
+        color: #343a40;
+    }
+}
+
+.logo-area {
+        display: block;
+        padding-bottom: 2rem;
+        text-align: center;
+        font-weight: bold;
+        letter-spacing: 2px;
+}
+
+.authDiv {
+
+    padding: 2rem;
+    max-width: 650px;
+    margin: 0 auto;
+    /*width: 360px;
+    width: 80%;
+    max-width: 650px;
+    min-width: 280px;
+    border-radius: 2px;*/
+
+}

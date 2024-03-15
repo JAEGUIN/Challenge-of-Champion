@@ -1,0 +1,297 @@
+.pageWrapper {
+  min-height: 100vh;
+  margin-bottom: 3rem;
+}
+.contentArea {
+  flex-grow: 1;
+  margin-left: $sidebarWidth;
+}
+@include media-breakpoint-down(lg) {
+  .contentArea {
+    flex-grow: 1;
+    margin-left: 0;
+  }
+}
+
+.wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.card {
+  box-shadow: $card-box-shadow;
+  margin-bottom: 30px;
+}
+
+.circle-box {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 100%;
+  &.lg-box {
+    width: 60px;
+    height: 60px;
+    font-size: 21px;
+    line-height: 60px;
+  }
+}
+.button-group .btn {
+  margin: 3px;
+}
+
+.table>:not(:first-child) {
+  border-top: 2px solid;
+}
+.table-borderless>:not(:first-child) {
+  border-top-width: 0;
+}
+
+.popualrArena {
+  margin-top: 10px;
+  font-size: 30px;
+  text-align: center; /* 수평 중앙 정렬을 위한 설정 */
+
+}
+
+.titlePopularArena {
+  margin: 20px;
+  font-size: 30px;
+}
+
+.popualrArena img{
+  width: 80%; /* 이미지의 너비를 부모 컨테이너에 맞게 설정 */
+  margin-top: 10px;
+  height: 100%; /* 높이를 100%로 설정하여 잘림 방지 */
+  object-fit: contain; /* contain은 이미지가 부모 요소에 잘리지 않고 맞춰지도록 설정 */
+  object-position: center center; /* 이미지를 정중앙에 위치시킴 */
+}
+
+.popluarArenaBtn {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  border-radius: 20px;
+}
+
+.div-horizon-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContent {
+  margin-top: 5vh;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%; /* 필요한 경우 조정 가능 */
+}
+
+.contentProfileImg {
+  width: 100px;
+  height: 100px;
+}
+
+.contentDate {
+  /* 프로필 이름 */ 
+  font-weight: bold;
+  margin:0.3rem;
+  text-align: right;
+}
+
+.right-align-container {
+  text-align: right;
+}
+
+.contentImg {
+  width: 80%; /* 이미지의 너비를 부모 컨테이너에 맞게 설정 */
+  margin-top: 10px;
+  height: 100%; /* 높이를 100%로 설정하여 잘림 방지 */
+  object-fit: contain; /* contain은 이미지가 부모 요소에 잘리지 않고 맞춰지도록 설정 */
+  object-position: center center; /* 이미지를 정중앙에 위치시킴 */
+}
+
+.scrollUp {
+  position: fixed; /* 스크롤 상관없이 아래 */
+  bottom: 0.6rem; /* 아래쪽에 배치 */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.registBoard {
+  position: fixed; /* 스크롤 상관없이 아래 */
+  bottom: 0.6rem; /* 아래쪽에 배치 */
+  left:90%;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.detailContent {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  margin: auto;
+  width: 80%;
+  justify-content: center;
+}
+
+.detailLike {
+  flex: 0 0 30%;
+}
+.detailLike:hover {
+  cursor: pointer;
+}
+
+.detailComment {
+  flex: 0 0 40%;
+}
+
+.detailView {
+  flex: 0 0 30%;
+}
+
+.detailCnt {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.reply {
+  margin: 1rem;
+}
+
+.replyContent {
+  margin: 0.5rem;
+}
+
+.replyLike {
+  margin-left: 0.5rem;
+}
+.replyLike:hover {
+  cursor: pointer;
+}
+
+.line {
+  border-top: 1px solid #000; /* 선의 색상 및 두께 지정 */
+  width: 100%; /* 선의 가로 길이를 부모 요소에 맞추기 */
+}
+
+
+.registerBoard {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  margin: auto;
+  width: 80%;
+  height: 95vh;
+  justify-content: center;
+}
+
+.registerContent {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+}
+
+.registerTextWrapper {
+  height:70%;
+  margin: 0.3rem;
+}
+
+.registerTitle {
+  border: inset #d1d1d1;
+  padding: 0.5rem;
+}
+
+.registerText {
+  height:80%;
+  line-height:80%;
+  border:inset #d1d1d1;
+  vertical-align: text-top;
+  padding: 0.5rem;
+}
+
+.registBtn {
+  margin-bottom: 3rem;
+  bottom: 0.6rem;
+}
+
+.registCancel {
+  left: 0%;
+  margin: 1rem;
+  width: 100px;
+}
+
+.registerBtn {
+  
+  margin: 1rem;
+  width: 100px;
+}
+
+.insertReply {
+  width: 70px;
+}
+
+.userDetail {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  margin: auto;
+  width: 80%;
+  height: 95vh;
+  justify-content: center;
+}
+
+.profilMenu {
+  display: flex;
+  justify-content: space-between; /* 요소들을 동일한 간격으로 배치합니다. */
+}
+
+.guestBook {
+  margin: 1rem;
+}
+
+.heartCnt {
+  margin-left: 0.5rem;
+}
+.heartCnt:hover {
+  cursor:pointer;
+}
+
+.replyCnt {
+
+  margin-left: 2rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+
+.modal_s {
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 50%;
+  height: 50%;
+}
+
+.close-btn {
+  margin-left: 95%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.userSimple {
+  margin: 5px;
+}
