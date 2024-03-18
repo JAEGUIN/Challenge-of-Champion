@@ -40,7 +40,7 @@
         left join
             coc.user u
         on
-            f.userSeq = u.seq
+            f.followSeq = u.seq
         where userSeq = #{userSeq};
     </select>
 
