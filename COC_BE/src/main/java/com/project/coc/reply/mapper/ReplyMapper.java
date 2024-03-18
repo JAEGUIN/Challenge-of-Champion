@@ -21,4 +21,6 @@ public interface ReplyMapper {
     void updateReply(UpdateReplyRequest request);
 
     void deleteReply(Long seq);
+
+    void deleteReplyByUser(Long seq);
 }

@@ -22,5 +22,7 @@ public interface BoardMapper {
 
     void deleteBoard(Long seq);
 
+    void deleteBoardByUser(Long seq);
+
     void updateCount(Long seq);
 }

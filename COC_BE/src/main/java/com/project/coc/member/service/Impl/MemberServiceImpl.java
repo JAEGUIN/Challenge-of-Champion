@@ -1,9 +1,11 @@
 package com.project.coc.member.service.Impl;
 
+import com.project.coc.board.mapper.BoardMapper;
 import com.project.coc.jwt.JwtProvider;
 import com.project.coc.member.mapper.MemberMapper;
 import com.project.coc.member.model.*;
 import com.project.coc.member.service.MemberService;
+import com.project.coc.reply.mapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +21,10 @@ public class MemberServiceImpl implements MemberService {
     private final MemberMapper memberMapper;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final BoardMapper boardMapper;
+
+    private final ReplyMapper replyMapper;
 
     //회원가입
     @Override
@@ -63,6 +69,8 @@ public class MemberServiceImpl implements MemberService {
     //유저 삭제
     @Override
     public void deleteMember(Long seq) {
+        boardMapper.deleteBoardByUser(seq);
+        replyMapper.deleteReplyByUser(seq);
         memberMapper.deleteMember(seq);
     }
 

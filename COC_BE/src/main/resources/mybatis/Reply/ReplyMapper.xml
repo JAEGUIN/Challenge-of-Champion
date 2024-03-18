@@ -86,4 +86,13 @@
         ,   updatedAt = SYSDATE()   /* 삭제일시 */
         WHERE seq = #{seq}
     </delete>
+
+    <!-- Reply 삭제 By 회원 -->
+    <delete id="deleteReplyByUser">
+        UPDATE coc.reply
+        SET
+            delYn = 'Y'             /* 삭제코드 */
+        ,   updatedAt = SYSDATE()   /* 삭제일시 */
+        WHERE userSeq = #{seq}
+    </delete>
 </mapper>

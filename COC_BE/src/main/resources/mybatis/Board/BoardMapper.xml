@@ -140,8 +140,17 @@
     <delete id="deleteBoard">
         UPDATE coc.board
         SET
-            delYn = 'Y'            /* 삭제코드 */
+            delYn = 'Y'             /* 삭제코드 */
         ,   updatedAt = SYSDATE()   /* 삭제일시 */
         WHERE seq = #{seq}
+    </delete>
+
+    <!-- Board 삭제 By 회원 -->
+    <delete id="deleteBoardByUser">
+        UPDATE coc.board
+        SET
+            delYn = 'Y'             /* 삭제코드 */
+        ,   updatedAt = SYSDATE()   /* 삭제일시 */
+        WHERE userSeq = #{seq}
     </delete>
 </mapper>
