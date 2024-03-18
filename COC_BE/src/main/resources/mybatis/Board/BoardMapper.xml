@@ -97,6 +97,14 @@
         GROUP by b.seq
     </select>
 
+    <!-- Board 조회수 증가 -->
+    <update id="updateCount">
+        UPDATE coc.board
+        SET
+        count = count + 1
+        WHERE seq = #{seq}
+    </update>
+
     <!-- Board 등록 -->
     <insert id="regiBoard">
         INSERT INTO coc.board

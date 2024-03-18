@@ -67,6 +67,7 @@ public class BoardServiceImpl implements BoardService {
             if(heartMapper.heartCheck(boardSeq, userInfo)>0){
                 detail.setHeartCheck(true);
             }
+            mapper.updateCount(seq);
             return detail;
         }catch (Exception e){
             e.printStackTrace();

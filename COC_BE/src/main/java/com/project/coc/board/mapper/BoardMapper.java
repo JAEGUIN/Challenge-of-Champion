@@ -21,4 +21,6 @@ public interface BoardMapper {
     void updateBoard(UpdateBoardRequest request);
 
     void deleteBoard(Long seq);
+
+    void updateCount(Long seq);
 }
