@@ -275,6 +275,7 @@
 }
 
 .modal_s {
+  position: relative;
   display: table-cell;
   vertical-align: middle;
   background-color: #fff;
@@ -285,7 +286,9 @@
 }
 
 .close-btn {
-  margin-left: 95%;
+  position: absolute; /* 버튼을 모달 내부에 절대적으로 위치시킵니다. */
+  top: 10px; /* 원하는 위치에 조정 */
+  right: 10px; /* 원하는 위치에 조정 */
   background: none;
   border: none;
   cursor: pointer;
@@ -294,4 +297,9 @@
 
 .userSimple {
   margin: 5px;
+}
+
+.margin-topDown-ten {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

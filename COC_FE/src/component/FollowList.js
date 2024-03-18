@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserSimple from './UserSimple';
 
-const FollowList = ({ showModal, setShowModal, modalData}) => {
+const FollowList = ({ showModal, setShowModal, modalData, follow}) => {
     const [contentData, setContentData] = useState([]);
     // 모달이 열려 있는지 여부를 관리하는 state
     const [isOpen, setIsOpen] = useState(showModal);
@@ -19,9 +19,15 @@ const FollowList = ({ showModal, setShowModal, modalData}) => {
         showModal &&
         <div className="modal-overlay">
           <div className="modal_s">
+            <div>
+                {follow && '팔로워'}
+                {!follow && '팔로잉'}
+            </div>
             <button className="close-btn" onClick={closeModal}>X</button>
-            {contentData.map((item) => (
-                <UserSimple key={item.id} data={item}/>
+            
+            <div className="line margin-topDown-ten"></div>
+            {contentData.map((item,index) => (
+                <UserSimple key={index} data={item}/>
             ))}
           </div>
         </div>

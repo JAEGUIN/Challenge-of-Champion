@@ -12,6 +12,7 @@ const UserDetail = (props) => {
     const [showModal, setShowModal] = useState(false); // 모달의 열림/닫힘 상태를 관리하는 state
     const [modalData,setModalData] = useState([]);
     const [followState, setFollowState] = useState(false);
+    const [modalFollow, setModalFollow] = useState(true); // 모달 창에 팔로우, 팔로워 표시(true = 팔로워, false = 팔로잉)
 
     const location = useLocation();
     // jwt
@@ -133,7 +134,7 @@ const UserDetail = (props) => {
 
     // 모달을 열기 위한 함수
     const openModal = (follow) => {
-      
+      setModalFollow(follow);
       getModalData(follow);
       setShowModal(true);
     };
@@ -162,7 +163,7 @@ const UserDetail = (props) => {
                     </div>
                 </div>
                 <div className="profilDesc">{profileCont}</div>
-                <Button>구독</Button>
+                <Button className='margin-topDown-ten'>구독</Button>
             </div>
             
             <div className="profilMenu d-flex">
@@ -172,11 +173,11 @@ const UserDetail = (props) => {
                 <div className="profileMenuList">더미3</div>
                 <div className="profileMenuList">방명록</div>
             </div>
-            <div className="line"></div>
+            <div className="line margin-topDown-ten"></div>
             <Outlet context={{
               nick:nickName
             }}/>
-            <FollowList showModal={showModal} setShowModal={setShowModal} modalData={modalData}/>
+            <FollowList showModal={showModal} setShowModal={setShowModal} modalData={modalData} follow={modalFollow}/>
         </div>
     );
 };

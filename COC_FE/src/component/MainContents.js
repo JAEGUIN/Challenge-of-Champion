@@ -95,6 +95,7 @@ const MainContents = (props) => {
 
     return (
         <div className="mainContent">
+            <div className="line margin-topDown-ten"></div>
             {/* 프로필 부분 */}
             <div className="d-flex">
                 <img onClick={goProfil} src="/img/sample.jpg" className="contentProfileImg"/>

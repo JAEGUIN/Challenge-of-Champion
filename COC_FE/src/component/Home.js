@@ -64,8 +64,8 @@ const Home = () => {
         <div>
             <PopularArena/>
             <div className="mainContents">
-                {contentData.map((item) => (
-                    <MainContents key={item.id} data={item} updateData={handleDataUpdate}/>
+                {contentData.map((item,index) => (
+                    <MainContents key={index} data={item} updateData={handleDataUpdate}/>
                 ))}
             </div>
         </div>
