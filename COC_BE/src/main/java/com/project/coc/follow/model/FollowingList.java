@@ -15,8 +15,8 @@ public class FollowingList {
     private String nickName;
 
     /**
-     * 팔로잉 이메일
+     * 팔로잉 유저 번호
      */
-    @Schema(defaultValue = "팔로잉 이메일")
-    private String email;
+    @Schema(defaultValue = "팔로잉 유저 번호")
+    private long userSeq;
 }
