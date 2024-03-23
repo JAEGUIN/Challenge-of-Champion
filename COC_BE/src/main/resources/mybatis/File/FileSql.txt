@@ -1,0 +1,18 @@
+CREATE TABLE coc.file (
+    seq BIGINT AUTO_INCREMENT PRIMARY KEY,
+    boardSeq VARCHAR(20),
+    userSeq VARCHAR(20),
+    fileName VARCHAR(100),
+    uploadedName VARCHAR(100),
+    createdBy VARCHAR(20),
+    updatedBy VARCHAR(20),
+    createdAt CHARACTER(19),
+    updatedAt CHARACTER(19),
+    delYn CHARACTER(1)
+);
+
+DROP table coc.file;
+
+#파일 첨부부분 꼭 UTF8로 설정해 줘야함!!
+ALTER TABLE coc.file MODIFY COLUMN fileName varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL NULL;
+ALTER TABLE coc.file MODIFY COLUMN uploadedName varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL NULL;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.coc.file.mapper.FileMapper">
+
+    <insert id="upload">
+        INSERT INTO coc.file
+        (
+            boardSeq        /* 보드번호 */
+        ,   userSeq         /* 유저번호 */
+        ,   fileName        /* 파일이름 */
+        ,   uploadedName    /* 업로드된 파일이름 */
+        ,   createdAt       /* 생성일시 */
+        ,   updatedAt       /* 수정일시 */
+        ,   delYn           /* 삭제여부 */
+        )VALUES(
+            #{boardSeq}     /* 보드번호 */
+        ,   #{userSeq}      /* 유저번호 */
+        ,   #{fileName}     /* 파일이름 */
+        ,   #{uploadedName} /* 업로드된 파일이름 */
+        ,   SYSDATE()       /* 생성일시 */
+        ,   SYSDATE()       /* 수정일시 */
+        ,   'N'             /* 삭제여부 */
+        )
+    </insert>
+</mapper>
