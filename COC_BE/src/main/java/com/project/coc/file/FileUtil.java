@@ -1,12 +1,17 @@
 package com.project.coc.file;
 
 import com.project.coc.file.mapper.FileMapper;
+import com.project.coc.file.model.SearchFileRequest;
 import com.project.coc.file.model.UploadFileRequest;
 import com.project.coc.jwt.CustomUserDetails;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -83,5 +88,35 @@ public class FileUtil {
             }
         }
         return uploadNames;
+    }
+
+    public ResponseEntity<Resource> getFile(String fileName){
+
+        Resource resource = new FileSystemResource(uploadPath+File.separator+fileName);
+
+        if(!resource.isReadable()){
+            resource = new FileSystemResource(uploadPath+ File.separator + "default.png");
+        }
+
+        HttpHeaders headers = new HttpHeaders();
+
+        try {
+            headers.add("Content-Type", Files.probeContentType(resource.getFile().toPath()));
+        }catch (IOException io){
+            throw new RuntimeException(io);
+        }
+
+        return ResponseEntity.ok().headers(headers).body(resource);
+    }
+
+    public List<SearchFileRequest> getFiles(SearchFileRequest request) {
+
+        List<SearchFileRequest> result = new ArrayList<>();
+        result = mapper.getFiles(request);
+
+//        for(SearchFileRequest fileName : result){
+//            getFile(String.valueOf(fileName));
+//        }
+        return result;
     }
 }

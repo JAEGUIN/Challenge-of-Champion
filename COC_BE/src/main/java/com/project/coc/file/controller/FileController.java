@@ -1,8 +1,11 @@
 package com.project.coc.file.controller;
 
 import com.project.coc.file.FileUtil;
+import com.project.coc.file.model.SearchFileRequest;
 import com.project.coc.file.model.UploadFileRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +18,18 @@ import java.util.Map;
 public class FileController {
 
     private final FileUtil fileUtil;
+
+    @GetMapping("/view/{fileName}")
+    public ResponseEntity<Resource> getFile(@PathVariable String fileName){
+        return fileUtil.getFile(fileName);
+    }
+
+    @GetMapping("/view/detailList")
+    public ResponseEntity<List<SearchFileRequest>> getFilesByBoardSeq(
+            @RequestBody SearchFileRequest request){
+        return ResponseEntity.ok(fileUtil.getFiles(request));
+    }
+
 
     @PostMapping("/upload")
     public Map<String, String> upload(UploadFileRequest request){
