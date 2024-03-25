@@ -114,9 +114,11 @@ public class FileUtil {
         List<SearchFileRequest> result = new ArrayList<>();
         result = mapper.getFiles(request);
 
-//        for(SearchFileRequest fileName : result){
-//            getFile(String.valueOf(fileName));
-//        }
         return result;
+    }
+
+    public List<?> deleteFiles(Long seq) {
+        mapper.deleteFiles(seq);
+        return null;
     }
 }

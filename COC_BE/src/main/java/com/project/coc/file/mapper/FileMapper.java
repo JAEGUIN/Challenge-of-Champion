@@ -13,4 +13,6 @@ public interface FileMapper {
     void upload(UploadFileRequest request);
 
     List<SearchFileRequest> getFiles(SearchFileRequest request);
+
+    void deleteFiles(Long seq);
 }

@@ -24,6 +24,14 @@
         )
     </insert>
 
+    <delete id="deleteFiles">
+        UPDATE coc.file
+        SET
+            delYn = 'Y'
+        ,   updatedAt = SYSDATE()
+        WHERE boardseq = #{seq}
+    </delete>
+
     <!-- 파일리스트 조회(보드번호기준) -->
     <select id="getFiles" resultType="com.project.coc.file.model.SearchFileRequest">
         SELECT

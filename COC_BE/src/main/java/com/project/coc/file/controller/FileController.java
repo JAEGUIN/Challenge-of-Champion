@@ -42,4 +42,9 @@ public class FileController {
 
         return Map.of("result", "success");
     }
+
+    @DeleteMapping("/delete/{seq}")
+    public ResponseEntity<List<?>> deleteFileList(@PathVariable Long seq){
+        return ResponseEntity.ok(fileUtil.deleteFiles(seq));
+    }
 }
