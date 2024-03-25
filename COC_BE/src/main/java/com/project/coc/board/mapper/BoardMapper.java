@@ -25,4 +25,6 @@ public interface BoardMapper {
     void deleteBoardByUser(Long seq);
 
     void updateCount(Long seq);
+
+    int maxSeq();
 }

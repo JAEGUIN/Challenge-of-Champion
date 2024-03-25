@@ -17,7 +17,7 @@ public class PostBoardRequest {
     /**
      * 게시판 카테고리
      */
-    @Schema(defaultValue = "게시판 카테고리(b1)")
+    @Schema(defaultValue = "b1")
     private String category;
 
     /**

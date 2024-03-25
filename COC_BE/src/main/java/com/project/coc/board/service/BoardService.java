@@ -12,7 +12,7 @@ public interface BoardService {
 
     Board selectBoard(Long seq);
 
-    void regiBoard(PostBoardRequest request);
+    int regiBoard(PostBoardRequest request);
 
     void updateBoard(Long seq, UpdateBoardRequest request);
 

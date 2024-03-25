@@ -97,6 +97,13 @@
         GROUP by b.seq
     </select>
 
+    <!-- Board 최대PK(마지막 seq) 값 -->
+    <select id="maxSeq" resultType="java.lang.Integer">
+        SELECT
+            MAX(seq)
+        FROM coc.board b
+    </select>
+
     <!-- Board 조회수 증가 -->
     <update id="updateCount">
         UPDATE coc.board

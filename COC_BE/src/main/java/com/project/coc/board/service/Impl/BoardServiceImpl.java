@@ -77,11 +77,15 @@ public class BoardServiceImpl implements BoardService {
 
     @Transactional
     @Override
-    public void regiBoard(PostBoardRequest request) {
+    public int regiBoard(PostBoardRequest request) {
         try {
+            int boardSeq = 0;
             mapper.regiBoard(request);
+            boardSeq = mapper.maxSeq();
+            return boardSeq;
         }catch (Exception e){
             e.printStackTrace();
+            return 0;
         }
     }
 

@@ -32,8 +32,8 @@ public class BoardController {
 
     @Operation(summary = "게시판 등록", description = "content* , category* , userSeq*")
     @PostMapping("/regi")
-    public void postBoard(@RequestBody PostBoardRequest request){
-        service.regiBoard(request);
+    public int postBoard(@RequestBody PostBoardRequest request){
+        return service.regiBoard(request);
     }
 
     @Operation(summary = "게시판 수정", description = "seq* , content*")
