@@ -1,6 +1,7 @@
 package com.project.coc.file;
 
 import com.project.coc.file.mapper.FileMapper;
+import com.project.coc.file.model.FileResponse;
 import com.project.coc.file.model.SearchFileRequest;
 import com.project.coc.file.model.UploadFileRequest;
 import com.project.coc.jwt.CustomUserDetails;
@@ -109,9 +110,9 @@ public class FileUtil {
         return ResponseEntity.ok().headers(headers).body(resource);
     }
 
-    public List<SearchFileRequest> getFiles(SearchFileRequest request) {
+    public List<FileResponse> getFiles(SearchFileRequest request) {
 
-        List<SearchFileRequest> result = new ArrayList<>();
+        List<FileResponse> result = new ArrayList<>();
         result = mapper.getFiles(request);
 
         return result;

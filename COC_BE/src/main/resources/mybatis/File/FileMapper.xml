@@ -33,11 +33,15 @@
     </delete>
 
     <!-- 파일리스트 조회(보드번호기준) -->
-    <select id="getFiles" resultType="com.project.coc.file.model.SearchFileRequest">
+    <select id="getFiles" resultType="com.project.coc.file.model.FileResponse">
         SELECT
-            f.fileName
+            f.boardSeq
+        ,   f.userSeq
+        ,   f.fileName
         ,   f.uploadedName
         FROM coc.file f
-        WHERE boardSeq = #{boardSeq}
+        WHERE 1=1
+            AND f.delYn = 'N'
+            AND f.boardSeq = #{boardSeq}
     </select>
 </mapper>

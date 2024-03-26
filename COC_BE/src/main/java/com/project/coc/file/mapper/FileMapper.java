@@ -1,5 +1,6 @@
 package com.project.coc.file.mapper;
 
+import com.project.coc.file.model.FileResponse;
 import com.project.coc.file.model.SearchFileRequest;
 import com.project.coc.file.model.UploadFileRequest;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,7 +13,7 @@ import java.util.List;
 public interface FileMapper {
     void upload(UploadFileRequest request);
 
-    List<SearchFileRequest> getFiles(SearchFileRequest request);
+    List<FileResponse> getFiles(SearchFileRequest request);
 
     void deleteFiles(Long seq);
 }

@@ -1,6 +1,7 @@
 package com.project.coc.file.controller;
 
 import com.project.coc.file.FileUtil;
+import com.project.coc.file.model.FileResponse;
 import com.project.coc.file.model.SearchFileRequest;
 import com.project.coc.file.model.UploadFileRequest;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,7 @@ public class FileController {
     }
 
     @GetMapping("/view/detailList")
-    public ResponseEntity<List<SearchFileRequest>> getFilesByBoardSeq(
-            @RequestBody SearchFileRequest request){
+    public ResponseEntity<List<FileResponse>> getFilesByBoardSeq(SearchFileRequest request){
         return ResponseEntity.ok(fileUtil.getFiles(request));
     }
 
